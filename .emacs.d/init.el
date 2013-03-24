@@ -17,11 +17,17 @@
 
 
 ;;(require 'org-install)
-(setq starter-kit-dir
-      (file-name-directory (or load-file-name (buffer-file-name))))
-;; load up the starter kit
-(org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
-;;(starter-kit-load "lisp")
+(add-hook 'after-init-hook
+          `(lambda ()
+             ;; remember this directory
+             (setq starter-kit-dir
+                   ,(file-name-directory (or load-file-name (buffer-file-name))))
+             ;; load up the starter kit
+             (require 'org)
+             (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
+             (starter-kit-load "lisp")))
+
+
 ;;; init.el ends here
 
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize)

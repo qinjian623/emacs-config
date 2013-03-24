@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (ac-nrepl-popup-doc ac-nrepl-setup ac-nrepl-clear-class-cache)
-;;;;;;  "ac-nrepl" "ac-nrepl.el" (20729 801))
+;;;;;;  "ac-nrepl" "ac-nrepl.el" (20723 39234))
 ;;; Generated autoloads from ac-nrepl.el
 
 (autoload 'ac-nrepl-clear-class-cache "ac-nrepl" "\
@@ -54,7 +54,7 @@ A popup alternative to `nrepl-doc'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("ac-nrepl-pkg.el") (20729 801 487000))
+;;;### (autoloads nil nil ("ac-nrepl-pkg.el") (20723 39234 492372))
 
 ;;;***
 
