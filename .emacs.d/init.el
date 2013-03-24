@@ -169,7 +169,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (defun global-views-setting ()
   (progn
     (load-file "~/.emacs.d/themes/cyberpunk.el")
-    (color-theme-cyberpunk)
+    ;;(color-theme-cyberpunk)
     (load-file "~/.emacs.d/themes/color-theme-tangotango.el")
     (color-theme-tangotango)
     ;;(mouse-avoidance-mode 'animate)
@@ -342,3 +342,4 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (auto-complete-clang-settings)
              (message "soso")))
 
+(desktop-save-mode t)
