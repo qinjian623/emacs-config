@@ -13,26 +13,17 @@
 ;;(when (not package-archive-contents)
 ;;  (package-refresh-contents))
 ;; Add in your own as you wish:
-
-
-
 ;;(require 'org-install)
-(add-hook 'after-init-hook
-          `(lambda ()
-             ;; remember this directory
-             (setq starter-kit-dir
-                   ,(file-name-directory (or load-file-name (buffer-file-name))))
-             ;; load up the starter kit
-             (require 'org)
-             (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
-             (starter-kit-load "lisp")))
-
 
 ;;; init.el ends here
+;;session settings
+(add-hook 'after-init-hook 'session-initialize)
+(load "desktop")
+(desktop-load-default)
+(desktop-read)
 
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize)
  "A list of packages to ensure are installed at launch.")
-
 
 ;;; BEGIN[qinjian] Font settings from emacser.com
 (defun qiang-set-font (english-fonts
@@ -75,7 +66,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;if it is in the x then set the font	
 (if window-system
     (qiang-set-font
-	 '("Microsoft Yahei" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=17"
+	 '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=14"
 	 '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体")))
 
 
@@ -105,17 +96,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;;;BEGIN [qinjian]
-
 ;;Settings with different platforms:
-(defun system-var-settings ()
+(defun windows-nt-settings ()
   (progn
-    (if (equal system-type 'windows-nt)
-        (windows-nt-settings))
-    (if (equal system-type 'darwin)
-        (mac-os-settings))))
-;;System dependent settings
-(system-var-settings)
-
+    (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
+    (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
+    (setq org-todo-dir "F:\\Dropbox\\TODO")))
 (defun mac-os-settings ()
   (progn
     (setq org-publish-base-dir "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts")
@@ -123,13 +109,14 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq org-todo-dir "~/Dropbox/TODO")
     (setq mac-option-key-is-meta t)
     (setq display-battery-mode t)))
-
-(defun windows-nt-settings ()
+;;System dependent settings
+(defun system-var-settings ()
   (progn
-    (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
-    (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
-    (setq org-todo-dir "F:\\Dropbox\\TODO")))
-
+    (if (equal system-type 'windows-nt)
+        (windows-nt-settings))
+    (if (equal system-type 'darwin)
+        (mac-os-settings))))
+(system-var-settings)
 
 (defun org-mode-settings ()
   (progn
@@ -149,11 +136,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun auto-complete-settings ()
   (require 'auto-complete-config)
-  (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict/")
+  ;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict/")
   (ac-config-default)
-  (setq ac-quick-help-delay 0.1)
-  (setq ac-quick-help-height 10))
-(auto-complete-settings)
+  ;;(setq ac-quick-help-height 10)
+  (setq ac-quick-help-delay 0.1))
+
+
 ;; TODO semantic-ia not installed
 ;;(require 'cedet)
 ;;(require 'semantic-ia)
@@ -183,7 +171,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (load-file "~/.emacs.d/themes/cyberpunk.el")
     (color-theme-cyberpunk)
     (load-file "~/.emacs.d/themes/color-theme-tangotango.el")
-    ;;(color-theme-tangotango)
+    (color-theme-tangotango)
     ;;(mouse-avoidance-mode 'animate)
     (setq scroll-step 1
           scroll-margin 1
@@ -193,7 +181,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq display-time-24hr-format t)
     (global-linum-mode 1)
     (tool-bar-mode -1)
-    (menu-bar-mode t)
+    (menu-bar-mode -1)
     (scroll-bar-mode -1)
     (setq frame-title-format "%n%F/%b")))
 
@@ -252,12 +240,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq time-stamp-warn-inactive t)
     (setq time-stamp-format "%:u %02m/%02d/%04y %02H:%02M:%02S")
     (add-hook 'write-file-hooks 'time-stamp)))
-(defun global-setting ()
-  (progn (setq-default ispell-program-name "aspell")
-         (ac-flyspell-workaround)
-         (global-key-setting)
-         (global-views-setting)
-         (setq ring-bell-function (lambda ()(message "Bing!")))))
+
 
 ;;add hooks
 (defun add-common-mode-hooks (l)
@@ -290,26 +273,27 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (add-hook 'nrepl-mode-hook
           'nrepl-turn-on-eldoc-mode)
 
-(require 'ac-nrepl)
-(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))
-
-
-
-
-
-
+(defun ac-nrepl-settings ()
+  (progn
+    (require 'ac-nrepl)
+    (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+    (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+    (eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))))
 
 ;;This is for the auto-complete-clang
-(add-to-list 'load-path "~/.emacs.d/libs")
-(require 'auto-complete-clang)
-(setq ac-clang-auto-save t)  
-(setq ac-auto-start t)  
-(setq ac-quick-help-delay 0.5)  
+;;TODO 
+(defun auto-complete-clang-settings ()
+  (progn
+    (add-to-list 'load-path "~/.emacs.d/libs")
+    (require 'auto-complete-clang)
+    (setq ac-clang-auto-save t)
+    (setq ac-auto-start t)
+    (setq ac-quick-help-delay 0.5)
+    (define-key ac-mode-map  [(control tab)] 'auto-complete)
+    (my-ac-config)))
+
 ;; (ac-set-trigger-key "TAB")  
 ;; (define-key ac-mode-map  [(control tab)] 'auto-complete)  
-(define-key ac-mode-map  [(control tab)] 'auto-complete)  
 (defun my-ac-config ()  
   (setq ac-clang-flags  
         (mapcar(lambda (item)(concat "-I" item))  
@@ -335,6 +319,26 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))  
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)  
 ;; ac-source-gtags  
-(my-ac-config)  
+(defun global-setting ()
+  (progn (setq-default ispell-program-name "aspell")
+         (global-key-setting)
+         (global-views-setting)
+         (setq ring-bell-function (lambda ()(message "Bing!")))))
 
+(add-hook 'after-init-hook
+          `(lambda ()
+             ;; remember this directory
+             (setq starter-kit-dir
+                   ,(file-name-directory (or load-file-name (buffer-file-name))))
+             ;; load up the starter kit
+             (require 'org)
+             (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
+             (starter-kit-load "lisp")
+             (global-setting)
+             ;;(auto-complete-settings)
+             (ac-nrepl-settings)
+             (ac-flyspell-workaround)
+             ;; If setting function does not work properly, Just put it at the end. 
+             (auto-complete-clang-settings)
+             (message "soso")))
 
