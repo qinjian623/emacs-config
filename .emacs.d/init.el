@@ -8,22 +8,71 @@
 
 ;;; Time-stamp: <qin 10/25/2012 19:30:52>
 
+;;; BEGIN 
+;;; BUGFIXED region
+;;Copy this from org 7.8.11 missed from 7.9.* REASON: hu knows...
+(defun org-strip-protective-commas (beg end)
+  "Strip protective commas between BEG and END in the current buffer."
+  (interactive "r")
+  (save-excursion
+    (save-match-data
+      (goto-char beg)
+      (let ((front-line (save-excursion
+                          (re-search-forward
+                           "[^[:space:]]" end t)
+                          (goto-char (match-beginning 0))
+                          (current-column))))
+        (while (re-search-forward "^[ \t]*\\(,\\)\\([*]\\|#\\+\\)" end t)
+          (goto-char (match-beginning 1))
+          (when (= (current-column) front-line)
+            (replace-match "" nil nil nil 1)))))))
+
+(defun org-babel-noweb-p (params context)
+  (let* (intersect
+         (intersect (lambda (as bs)
+                       (when as
+                         (if (member (car as) bs)
+                             (car as)
+                           (funcall intersect (cdr as) bs))))))
+    (funcall intersect (case context
+                         (:tangle '("yes" "tangle" "no-export" "strip-export"))
+                         (:eval   '("yes" "no-export" "strip-export" "eval"))
+                         (:export '("yes")))
+             (split-string (or (cdr (assoc :noweb params)) "")))))
+
+(defun org-unescape-code-in-region (beg end)
+  "Un-escape lines between BEG and END.
+ Un-escaping happens by removing the first comma on lines starting
+ with \",*\", \",#+\", \",,*\" and \",,#+\"."
+  (interactive "r")
+  (save-excursion
+    (goto-char beg)
+    (while (re-search-forward "^[ \t]*,?\\(,\\)\\(?:\\*\\|#\\+\\)" end t)
+      (replace-match "" nil nil nil 1))))
+
+;;TODO[DONE] bug-fix for the org-find-library-dir
+(defmacro org-find-library-dir (library)
+  `(file-name-directory (locate-library ,library)))
+;;;END
 
 ;;;Auto-install package
 ;;(when (not package-archive-contents)
 ;;  (package-refresh-contents))
 ;; Add in your own as you wish:
-;;(require 'org-install)
 
+
+
+;;(require 'org-install)
+(setq starter-kit-dir
+      (file-name-directory (or load-file-name (buffer-file-name))))
+;; load up the starter kit
+(org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
+;;(starter-kit-load "lisp")
 ;;; init.el ends here
-;;session settings
-(add-hook 'after-init-hook 'session-initialize)
-(load "desktop")
-(desktop-load-default)
-(desktop-read)
 
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize)
  "A list of packages to ensure are installed at launch.")
+
 
 ;;; BEGIN[qinjian] Font settings from emacser.com
 (defun qiang-set-font (english-fonts
@@ -63,12 +112,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
       (format "%s%s" font-name font-size)
     (format "%s %s" font-name font-size)))
 
-;;if it is in the x then set the font	
-(if window-system
-    (qiang-set-font
-	 '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=14"
-	 '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体")))
-
+(qiang-set-font
+ '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=17"
+ '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
 
 ;; starter kit : C-+, C--
 ;; For Linux
@@ -96,52 +142,55 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;;;BEGIN [qinjian]
-;;Settings with different platforms:
-(defun windows-nt-settings ()
-  (progn
-    (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
-    (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
-    (setq org-todo-dir "F:\\Dropbox\\TODO")))
-(defun mac-os-settings ()
-  (progn
-    (setq org-publish-base-dir "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts")
-    (setq org-publish-publishing-dir "/Users/qin/Documents/git/qinjian623.github.com/_posts")
-    (setq org-todo-dir "~/Dropbox/TODO")
-    (setq mac-option-key-is-meta t)
-    (setq display-battery-mode t)))
-;;System dependent settings
-(defun system-var-settings ()
-  (progn
-    (if (equal system-type 'windows-nt)
-        (windows-nt-settings))
-    (if (equal system-type 'darwin)
-        (mac-os-settings))))
-(system-var-settings)
 
-(defun org-mode-settings ()
+;;Settings with different platforms:
+
+
+
+
+(defun mac-os-settings()
   (progn
-    (setq org-log-done 'time)
     (setq org-publish-project-alist
           '(("blog"
-             :base-directory org-publish-base-dir
+             :base-directory "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts"
              :base-extension "org"
-             :publishing-directory org-publish-publishing-dir
+             
+             :publishing-directory "/Users/qin/Documents/git/qinjian623.github.com/_posts"
              :recursive t
              ;;        :htmlized-source t
              :html-extension "html"
              :author-info nil
              :body-only t
              :table-of-contents nil)))
-    (setq org-agenda-files (list org-todo-dir))))
+    (setq mac-option-key-is-meta t)
+    (setq org-agenda-files (list "~/Dropbox/TODO"))
+    (setq display-battery-mode t)))
+(defun windows-nt-settings ()
+  (progn
+    (setq org-publish-project-alist
+          '(("blog"
+             :base-directory "C:\\ocuments and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_post"
+             :base-extension "org"
+             :publishing-directory "C:\\ocuments and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_post"
+             :recursive t
+             ;;        :htmlized-source t
+             :html-extension "html"
+             :author-info nil
+             :body-only t
+             :table-of-contents nil)))
+    (setq org-agenda-files (list "F:\\Dropbox\\TODO"))))
+
+
+(defun org-mode-settings ()
+  (setq org-log-done 'time))
 
 (defun auto-complete-settings ()
   (require 'auto-complete-config)
-  ;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict/")
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict/")
   (ac-config-default)
-  ;;(setq ac-quick-help-height 10)
-  (setq ac-quick-help-delay 0.1))
-
-
+  (setq ac-quick-help-delay 0.1)
+  (setq ac-quick-help-height 10))
+(auto-complete-settings)
 ;; TODO semantic-ia not installed
 ;;(require 'cedet)
 ;;(require 'semantic-ia)
@@ -162,16 +211,18 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (defun global-key-setting ()
   (progn
     (global-set-key [C-tab] 'other-window)
-    (global-set-key (kbd "RET") 'newline-and-indent)
+    (global-set-key "\C-m" 'set-mark-command)
     (global-set-key "\C-j" 'goto-line)
     (global-set-key "\C-z" 'undo)))
+
 
 (defun global-views-setting ()
   (progn
     (load-file "~/.emacs.d/themes/cyberpunk.el")
-    ;;(color-theme-cyberpunk)
+    (color-theme-cyberpunk)
     (load-file "~/.emacs.d/themes/color-theme-tangotango.el")
-    (color-theme-tangotango)
+    ;;(color-theme-tangotango)
+
     ;;(mouse-avoidance-mode 'animate)
     (setq scroll-step 1
           scroll-margin 1
@@ -181,7 +232,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq display-time-24hr-format t)
     (global-linum-mode 1)
     (tool-bar-mode -1)
-    (menu-bar-mode -1)
+    (menu-bar-mode t)
     (scroll-bar-mode -1)
     (setq frame-title-format "%n%F/%b")))
 
@@ -241,18 +292,15 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq time-stamp-format "%:u %02m/%02d/%04y %02H:%02M:%02S")
     (add-hook 'write-file-hooks 'time-stamp)))
 
+;;defun color-theme-setting ()
+;;now throw the file intro src/ ,will be added auto by start-kit
+;;(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
+;;(require 'color-theme)
+;;(color-theme-initialize)
+;;(color-theme-gnome2))
 
-;;add hooks
-(defun add-common-mode-hooks (l)
-  (dolist (item l)
-    (add-hook item 'common-mode-hooks)))
-
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda () (progn
-                   (rainbow-delimiters-mode t)
-                   (hl-line-mode -1))))
-(add-common-mode-hooks '(
-                         emacs-lisp-mode-hook
+;;add hooks 
+(add-common-mode-hooks '(emacs-lisp-mode-hook
                          emacs-startup-hook
                          org-mode-hook))
 
@@ -262,8 +310,18 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
               (when (not (package-installed-p p))
                 (package-install p)))))
 
+(global-key-setting)
+(global-views-setting)
+
 (time-stamp-setting)
+;;(color-theme-setting)
 (calendar-setting)
+
+;;System dependent settings
+(if (equal system-type 'windows-nt)
+    (windows-nt-settings))
+(if (equal system-type 'darwin)
+    (mac-os-settings))
 
 
 ;;Clojure settings
@@ -273,73 +331,37 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (add-hook 'nrepl-mode-hook
           'nrepl-turn-on-eldoc-mode)
 
-(defun ac-nrepl-settings ()
-  (progn
-    (require 'ac-nrepl)
-    (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-    (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-    (eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))))
+(require 'ac-nrepl)
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))
 
-;;This is for the auto-complete-clang
-;;TODO 
-(defun auto-complete-clang-settings ()
-  (progn
-    (add-to-list 'load-path "~/.emacs.d/libs")
-    (require 'auto-complete-clang)
-    (setq ac-clang-auto-save t)
-    (setq ac-auto-start t)
-    (setq ac-quick-help-delay 0.5)
-    (define-key ac-mode-map  [(control tab)] 'auto-complete)
-    (my-ac-config)))
+(defun add-common-mode-hooks (l)
+  (dolist (item l)
+    (add-hook item 'common-mode-hooks)))
 
-;; (ac-set-trigger-key "TAB")  
-;; (define-key ac-mode-map  [(control tab)] 'auto-complete)  
-(defun my-ac-config ()  
-  (setq ac-clang-flags  
-        (mapcar(lambda (item)(concat "-I" item))  
-               (split-string  
-                "  
- /usr/include/c++/4.4  
- /usr/include/c++/4.4/i486-linux-gnu  
- /usr/include/c++/4.4/backward  
- /usr/local/include  
- /usr/lib/gcc/i486-linux-gnu/4.4.5/include  
- /usr/lib/gcc/i486-linux-gnu/4.4.5/include-fixed  
- /usr/include/i486-linux-gnu  
- /usr/include  
-")))  
-  (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))  
-  (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)  
-  ;; (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)  
-  (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)  
-  (add-hook 'css-mode-hook 'ac-css-mode-setup)  
-  (add-hook 'auto-complete-mode-hook 'ac-common-setup)  
-  (global-auto-complete-mode t))  
-(defun my-ac-cc-mode-setup ()  
-  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))  
-(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)  
-;; ac-source-gtags  
-(defun global-setting ()
-  (progn (setq-default ispell-program-name "aspell")
-         (global-key-setting)
-         (global-views-setting)
-         (setq ring-bell-function (lambda ()(message "Bing!")))))
+(add-common-mode-hooks '(
+                         emacs-lisp-mode-hook
+                         emacs-startup-hook
+                         org-mode-hook))
 
-(add-hook 'after-init-hook
-          `(lambda ()
-             ;; remember this directory
-             (setq starter-kit-dir
-                   ,(file-name-directory (or load-file-name (buffer-file-name))))
-             ;; load up the starter kit
-             (require 'org)
-             (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
-             (starter-kit-load "lisp")
-             (global-setting)
-             ;;(auto-complete-settings)
-             (ac-nrepl-settings)
-             (ac-flyspell-workaround)
-             ;; If setting function does not work properly, Just put it at the end. 
-             (auto-complete-clang-settings)
-             (message "soso")))
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda () (progn
+                   (rainbow-delimiters-mode t)
+                   (hl-line-mode -1))))
 
-(desktop-save-mode t)
+(global-set-key (kbd "RET") 'newline-and-indent)
+(setq ring-bell-function
+      (lambda ()
+        (message "Bing!")))
+
+(setq-default ispell-program-name "aspell")
+(ac-flyspell-workaround)
+(require 'org-latex)
+(setq org-export-latex-listings 'minted)
+(add-to-list 'org-export-latex-packages-alist '("" "minted"))
+(setq org-export-latex-minted-options
+      '(("frame" "lines")
+        ("fontsize" "\\scriptsize")
+        ("linenos" "true")))
+(setq org-export-latex-hyperref-format "\\ref{%s}")
