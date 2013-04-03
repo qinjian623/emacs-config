@@ -17,12 +17,8 @@
 
 ;;; init.el ends here
 ;;session settings
-(add-hook 'after-init-hook 'session-initialize)
-(load "desktop")
-(desktop-load-default)
-(desktop-read)
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize)
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize session)
  "A list of packages to ensure are installed at launch.")
 
 ;;; BEGIN[qinjian] Font settings from emacser.com
@@ -315,13 +311,15 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)  
   (add-hook 'css-mode-hook 'ac-css-mode-setup)  
   (add-hook 'auto-complete-mode-hook 'ac-common-setup)  
-  (global-auto-complete-mode t))  
+  (global-auto-complete-mode t))
+
 (defun my-ac-cc-mode-setup ()  
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))  
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)  
 ;; ac-source-gtags  
 (defun global-setting ()
   (progn (setq-default ispell-program-name "aspell")
+         (ac-flyspell-workaround)
          (global-key-setting)
          (global-views-setting)
          (setq ring-bell-function (lambda ()(message "Bing!")))))
@@ -335,12 +333,17 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (require 'org)
              (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
              (starter-kit-load "lisp")
+             (auto-complete-settings)
              (global-setting)
-             ;;(auto-complete-settings)
              (ac-nrepl-settings)
-             (ac-flyspell-workaround)
              ;; If setting function does not work properly, Just put it at the end. 
-             (auto-complete-clang-settings)))
+             (auto-complete-clang-settings)
+             (require 'session)
+             (session-initialize)
+             (load "desktop")
+             (desktop-load-default)
+             (desktop-read)
+             (ac-flyspell-workaround)))
 
 
 (add-hook 'emacs-lisp-mode-hook
@@ -349,17 +352,17 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
                     (hl-line-mode -1))))
 
 (desktop-save-mode t)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(;; other Babel languages
-   (ditaa . t)
-   (plantuml . t)
-   (dot . t)
-   (xxx . t)
-   ))
 
-(setq-default ispell-program-name "aspell")
-(ac-flyspell-workaround)
+;;(org-babel-do-load-languages
+;; 'org-babel-load-languages
+;;'( ;; other Babel languages
+;;  (ditaa . t)
+;;  (plantuml . t)
+;;  (dot . t)
+;;  (xxx . t)
+;;)
+;;)
+
 
 (require 'org-latex)
 (setq org-export-latex-listings 'minted)
@@ -369,4 +372,3 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
         ("fontsize" "\\scriptsize")
         ("linenos" "true")))
 (setq org-export-latex-hyperref-format "\\ref{%s}")
-
