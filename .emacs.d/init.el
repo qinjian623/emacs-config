@@ -16,8 +16,9 @@
 ;;(require 'org-install)
 
 ;;; init.el ends here
-;;session settings
 
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize session)
  "A list of packages to ensure are installed at launch.")
 
@@ -373,4 +374,5 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
         ("linenos" "true")))
 (setq org-export-latex-hyperref-format "\\ref{%s}")
 (require 'switch-window)
+(setq switch-window-shortcut-style 'qwerty)
 
