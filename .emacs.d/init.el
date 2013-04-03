@@ -163,6 +163,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (progn
     (global-set-key [C-tab] 'other-window)
     (global-set-key (kbd "RET") 'newline-and-indent)
+
     (global-set-key "\C-j" 'goto-line)
     (global-set-key "\C-z" 'undo)))
 
@@ -339,7 +340,33 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (ac-nrepl-settings)
              (ac-flyspell-workaround)
              ;; If setting function does not work properly, Just put it at the end. 
-             (auto-complete-clang-settings)
-             (message "soso")))
+             (auto-complete-clang-settings)))
+
+
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda () (progn
+                    (rainbow-delimiters-mode t)
+                    (hl-line-mode -1))))
 
 (desktop-save-mode t)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(;; other Babel languages
+   (ditaa . t)
+   (plantuml . t)
+   (dot . t)
+   (xxx . t)
+   ))
+
+(setq-default ispell-program-name "aspell")
+(ac-flyspell-workaround)
+
+(require 'org-latex)
+(setq org-export-latex-listings 'minted)
+(add-to-list 'org-export-latex-packages-alist '("" "minted"))
+(setq org-export-latex-minted-options
+      '(("frame" "lines")
+        ("fontsize" "\\scriptsize")
+        ("linenos" "true")))
+(setq org-export-latex-hyperref-format "\\ref{%s}")
+
