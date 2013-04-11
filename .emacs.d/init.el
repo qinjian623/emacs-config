@@ -17,8 +17,8 @@
 
 ;;; init.el ends here
 
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;(add-to-list 'package-archives
+;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize session)
  "A list of packages to ensure are installed at launch.")
 
@@ -62,9 +62,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 ;;if it is in the x then set the font	
 (if window-system
+    (progn
+    (scroll-bar-mode -1)
     (qiang-set-font
 	 '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=14"
 	 '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体")))
+  )
 
 
 ;; starter kit : C-+, C--
@@ -180,7 +183,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (global-linum-mode 1)
     (tool-bar-mode -1)
     (menu-bar-mode -1)
-    (scroll-bar-mode -1)
     (setq frame-title-format "%n%F/%b")))
 
 (defun calendar-setting ()
