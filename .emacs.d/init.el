@@ -19,6 +19,8 @@
 
 ;;(add-to-list 'package-archives
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize session)
  "A list of packages to ensure are installed at launch.")
 
@@ -65,9 +67,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (progn
     (scroll-bar-mode -1)
     (qiang-set-font
-	 '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=14"
-	 '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体")))
-  )
+	 '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
+	 '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))))
 
 
 ;; starter kit : C-+, C--
@@ -108,8 +109,15 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq org-publish-publishing-dir "/Users/qin/Documents/git/qinjian623.github.com/_posts")
     (setq org-todo-dir "~/Dropbox/TODO")
     (setq mac-option-key-is-meta t)
-    (setq display-battery-mode t)))
+    (setq display-battery-mode t)
+    (defun toggle-fullscreen ()
+      "Toggle full screen"
+      (interactive)
+      (set-frame-parameter
+       nil 'fullscreen
+       (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))))
 ;;System dependent settings
+
 (defun system-var-settings ()
   (progn
     (if (equal system-type 'windows-nt)
@@ -170,9 +178,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (defun global-views-setting ()
   (progn
     (load-file "~/.emacs.d/themes/cyberpunk.el")
-    ;;(color-theme-cyberpunk)
+    (color-theme-cyberpunk)
     (load-file "~/.emacs.d/themes/color-theme-tangotango.el")
-    (color-theme-tangotango)
+    ;;(color-theme-tangotango)
     ;;(mouse-avoidance-mode 'animate)
     (setq scroll-step 1
           scroll-margin 1
@@ -335,6 +343,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              ;; load up the starter kit
              (require 'org)
              (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
+             (add-to-list 'package-archives
+               '("melpa" . "http://melpa.milkbox.net/packages/") t)
              (starter-kit-load "lisp")
              (auto-complete-settings)
              (global-setting)
@@ -375,4 +385,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
         ("fontsize" "\\scriptsize")
         ("linenos" "true")))
 (setq org-export-latex-hyperref-format "\\ref{%s}")
+;;(require 'switch-window)
+;;(setq switch-window-shortcut-style 'qwerty)
 
