@@ -375,6 +375,4 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
         ("fontsize" "\\scriptsize")
         ("linenos" "true")))
 (setq org-export-latex-hyperref-format "\\ref{%s}")
-(require 'switch-window)
-(setq switch-window-shortcut-style 'qwerty)
 
