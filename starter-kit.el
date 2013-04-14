@@ -14,7 +14,8 @@
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
         ("original"    . "http://tromey.com/elpa/")
-        ("org"         . "http://orgmode.org/elpa/")))
+        ("org"         . "http://orgmode.org/elpa/")
+        ("marmalade"   . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
 (defvar starter-kit-packages
