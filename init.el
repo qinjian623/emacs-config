@@ -20,10 +20,6 @@
 ;;(add-to-list 'package-archives
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings org auto-complete clojure-mode paredit yasnippet win-switch windresize session)
- "A list of packages to ensure are installed at launch.")
-
 ;;; BEGIN[qinjian] Font settings from emacser.com
 (defun qiang-set-font (english-fonts
                        english-font-size
@@ -62,13 +58,15 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
       (format "%s%s" font-name font-size)
     (format "%s %s" font-name font-size)))
 
-;;if it is in the x then set the font	
-(if window-system
-    (progn
+;;if it is in the x then set the font
+(defun window-system-settings ()
+  (progn
     (scroll-bar-mode -1)
     (qiang-set-font
-	 '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
-	 '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))))
+     '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
+     '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))))
+(if window-system
+    (window-system-settings))
 
 
 ;; starter kit : C-+, C--
@@ -257,13 +255,14 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda () (progn
-                   (rainbow-delimiters-mode t)
-                   (hl-line-mode -1))))
+                    (rainbow-delimiters-mode t)
+                    (hl-line-mode -1))))
 (add-common-mode-hooks '(
                          emacs-lisp-mode-hook
                          emacs-startup-hook
                          org-mode-hook))
 
+(defvar my-packages '())
 (add-hook 'emacs-startup-hook
           (lambda ()
             (dolist (p my-packages)
@@ -328,6 +327,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))  
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)  
 ;; ac-source-gtags  
+
 (defun global-setting ()
   (progn (setq-default ispell-program-name "aspell")
          (ac-flyspell-workaround)
@@ -344,7 +344,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (require 'org)
              (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
              (add-to-list 'package-archives
-               '("melpa" . "http://melpa.milkbox.net/packages/") t)
+                          '("melpa" . "http://melpa.milkbox.net/packages/") t)
              (starter-kit-load "lisp")
              (auto-complete-settings)
              (global-setting)
@@ -358,12 +358,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (desktop-read)
              (ac-flyspell-workaround)))
 
-
+;;LISP settings
 (add-hook 'emacs-lisp-mode-hook
           '(lambda () (progn
                     (rainbow-delimiters-mode t)
                     (hl-line-mode -1))))
-
+;;Session settings
 (desktop-save-mode t)
 
 ;;(org-babel-do-load-languages
@@ -387,4 +387,3 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (setq org-export-latex-hyperref-format "\\ref{%s}")
 ;;(require 'switch-window)
 ;;(setq switch-window-shortcut-style 'qwerty)
-

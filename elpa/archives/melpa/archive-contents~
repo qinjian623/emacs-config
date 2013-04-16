@@ -3310,9 +3310,12 @@
 	      nil "auto-complete.el source for dabbrev [source: wiki]" single])
  (abl-mode .
 	   [(20120718 1655)
+<<<<<<< HEAD
+=======
 	    nil "Python TDD minor mode [source: github]" single])
  (list-utils .
 	     [(20121205 1456)
 	      nil "List-manipulation utility functions [source: github]" single]))
+>>>>>>> tmp
 	    nil "Python TDD minor mode [source: github]" single]))
 
