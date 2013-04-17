@@ -1,6 +1,7 @@
 auto-save-list/
-places
+./places
 backups/
 .smex-items
 tmp/
-ac-comphist.dat
+./ac-comphist.dat
+elpa/archives/
