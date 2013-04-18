@@ -169,9 +169,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (progn
     (global-set-key [C-tab] 'other-window)
     (global-set-key (kbd "RET") 'newline-and-indent)
-
     (global-set-key "\C-j" 'goto-line)
-    (global-set-key "\C-z" 'undo)))
+    (global-set-key "\C-z" 'undo)
+    (global-set-key (kbd "<f5>") 'nav)))
 
 (defun global-views-setting ()
   (progn
@@ -325,7 +325,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun my-ac-cc-mode-setup ()  
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))  
-(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)  
+(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
 ;; ac-source-gtags  
 
 (defun global-setting ()
@@ -387,3 +387,16 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (setq org-export-latex-hyperref-format "\\ref{%s}")
 ;;(require 'switch-window)
 ;;(setq switch-window-shortcut-style 'qwerty)
+(require 'emms-setup)
+(emms-standard)
+(emms-default-players)
+(setq emms-source-file-default-directory "")
+(global-ede-mode 1)                      ; Enable the Project management system
+(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
+(global-srecode-minor-mode 1)            ; Enable template insertion menu
+(defun my-cedet-hook ()
+  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
+  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle))
+(add-hook 'c-mode-common-hook 'my-cedet-hook)
