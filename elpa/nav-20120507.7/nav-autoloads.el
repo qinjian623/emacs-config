@@ -3,17 +3,24 @@
 ;;; Code:
 
 
-;;;### (autoloads (nav) "nav" "nav.el" (20846 19980))
+;;;### (autoloads nil "ack" "ack.el" (20847 47862))
+;;; Generated autoloads from ack.el
+
+(defvar ack-history nil)
+
+;;;***
+
+;;;### (autoloads (nav) "nav" "nav.el" (20847 47862))
 ;;; Generated autoloads from nav.el
 
 (autoload 'nav "nav" "\
-Run nav-mode in a narrow window on the left side.
+Opens Nav in a new window to the left of the current one.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("nav-pkg.el") (20846 19980 333000))
+;;;### (autoloads nil nil ("nav-pkg.el") (20847 47862 407000))
 
 ;;;***
 
