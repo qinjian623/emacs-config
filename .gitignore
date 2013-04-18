@@ -1,4 +1,6 @@
 auto-save-list/
+srecode-map.el
+elpa/archives/
 .session
 ./places
 backups/

@@ -171,7 +171,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (global-set-key (kbd "RET") 'newline-and-indent)
     (global-set-key "\C-j" 'goto-line)
     (global-set-key "\C-z" 'undo)
-    (global-set-key (kbd "<f5>") 'nav)))
+    (global-set-key (kbd "<f5>") 'nav-toggle)))
 
 (defun global-views-setting ()
   (progn
@@ -356,7 +356,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (load "desktop")
              (desktop-load-default)
              (desktop-read)
-             (ac-flyspell-workaround)))
+             (ac-flyspell-workaround)
+             (emms-settings)
+             (c-settings)))
 
 ;;LISP settings
 (add-hook 'emacs-lisp-mode-hook
@@ -387,13 +389,25 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (setq org-export-latex-hyperref-format "\\ref{%s}")
 ;;(require 'switch-window)
 ;;(setq switch-window-shortcut-style 'qwerty)
-(require 'emms-setup)
-(emms-standard)
-(emms-default-players)
-(setq emms-source-file-default-directory "")
-(global-ede-mode 1)                      ; Enable the Project management system
-(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
-(global-srecode-minor-mode 1)            ; Enable template insertion menu
+
+(defun emms-settings ()
+  (progn
+    (require 'emms-setup)
+    (emms-all)
+    (emms-default-players)
+    (emms-play-file "~/Music/for_fruit_basket.mp3")
+    (setq emms-source-file-default-directory "~/Music/")))
+
+(defun c-settings ()
+  (progn
+    (semantic-gcc-setup)
+    (global-ede-mode 1)
+    (semantic-mode)
+    (require 'srecode)
+    (global-srecode-minor-mode 1)))
+
+
+
 (defun my-cedet-hook ()
   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
   (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
