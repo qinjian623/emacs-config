@@ -20,7 +20,7 @@
 ;;(add-to-list 'package-archives
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-;;; BEGIN[qinjian] Font settings from emacser.com
+;;; 字体设置，来自emacser.com
 (defun qiang-set-font (english-fonts
                        english-font-size
                        chinese-fonts
@@ -58,7 +58,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
       (format "%s%s" font-name font-size)
     (format "%s %s" font-name font-size)))
 
-;;if it is in the x then set the font
+;;; X-window settings
 (defun window-system-settings ()
   (progn
     (scroll-bar-mode -1)
@@ -67,17 +67,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
      '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))))
 (if window-system
     (window-system-settings))
-
-
-;; starter kit : C-+, C--
-;; For Linux
-;;(global-set-key (kbd "<C-mouse-4>") 'text-scale-increase)
-;;(global-set-key (kbd "<C-mouse-5>") 'text-scale-decrease)
-;; For Windows
-;;(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
-;;(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
-;;;END
-
 
 ;;;BEGIN [qinjian] highlight-tail settings
 ;; TODO Doesn't work yet.
@@ -89,10 +78,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;        ("#00c377" . 60)))
 ;;;END
 
-
-
-;;(autoload 'js2-mode "js2-mode" nil t)
-;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;;;BEGIN [qinjian]
 ;;Settings with different platforms:
@@ -405,6 +390,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (semantic-gcc-setup)
     (global-ede-mode 1)
     (semantic-mode 1)
+    (require 'semantic/bovine/gcc)
     ;; Semantic
     (global-semantic-idle-completions-mode t)
     (global-semantic-decoration-mode t)
@@ -418,4 +404,11 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
   (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
   (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle))
+
+(add-hook 'c-mode-hook
+          '(lambda ()
+             (setq ac-sources (append '(ac-source-semantic) ac-sources))
+             (local-set-key (kbd "RET") 'newline-and-indent)
+             (linum-mode t)
+             (semantic-mode t)))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
