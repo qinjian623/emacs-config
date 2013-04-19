@@ -353,6 +353,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (auto-complete-clang-settings)
              (require 'session)
              (session-initialize)
+
              (load "desktop")
              (desktop-load-default)
              (desktop-read)
@@ -400,13 +401,17 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun c-settings ()
   (progn
+    (setq ecb-auto-activate 1)
     (semantic-gcc-setup)
     (global-ede-mode 1)
-    (semantic-mode)
+    (semantic-mode 1)
+    ;; Semantic
+    (global-semantic-idle-completions-mode t)
+    (global-semantic-decoration-mode t)
+    (global-semantic-highlight-func-mode t)
+    (global-semantic-show-unmatched-syntax-mode t)
     (require 'srecode)
     (global-srecode-minor-mode 1)))
-
-
 
 (defun my-cedet-hook ()
   (local-set-key [(control return)] 'semantic-ia-complete-symbol)

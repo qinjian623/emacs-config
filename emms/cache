@@ -35,3 +35,4 @@
 (puthash "d:/music/\323\352\317\302һ\325\373\315\355.mp3" '(*track* (type . file) (name . "d:/music/\323\352\317\302һ\325\373\315\355.mp3") (metadata) (info-mtime 20452 2510)) emms-cache-db)
 (puthash "d:/music/\327\356\354\305\303\361\327\345\267\347.mp3" '(*track* (type . file) (name . "d:/music/\327\356\354\305\303\361\327\345\267\347.mp3") (metadata) (info-mtime 20452 2376)) emms-cache-db)
 (puthash "/Users/qin/Music/for_fruit_basket.mp3" '(*track* (type . file) (name . "/Users/qin/Music/for_fruit_basket.mp3") (info-mtime 20799 19747 0 0) (metadata)) emms-cache-db)
+(puthash "c:/Documents and Settings/qinjian/Application Data/Music/for_fruit_basket.mp3" '(*track* (type . file) (name . "c:/Documents and Settings/qinjian/Application Data/Music/for_fruit_basket.mp3") (metadata)) emms-cache-db)
