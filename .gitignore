@@ -1,4 +1,11 @@
-.emacs.d/auto-save-list/
-.emacs.d/backups/
+auto-save-list/
+srecode-map.el
+elpa/archives/
+.session
+./places
+backups/
 .smex-items
-.emacs.d/tmp/
+tmp/
+url/
+ac-comphist.dat
+elpa/archives/
