@@ -381,13 +381,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (require 'emms-setup)
     (emms-all)
     (emms-default-players)
-    (emms-play-file "~/Music/for_fruit_basket.mp3")
     (setq emms-source-file-default-directory "~/Music/")))
 
 (defun c-settings ()
   (progn
     (setq ecb-auto-activate 1)
-    (semantic-gcc-setup)
+    ;;(semantic-gcc-setup)
     (global-ede-mode 1)
     (semantic-mode 1)
     (require 'semantic/bovine/gcc)
