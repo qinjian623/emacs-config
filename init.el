@@ -81,6 +81,17 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 ;;;BEGIN [qinjian]
 ;;Settings with different platforms:
+(defun linux-settings ()
+  (progn
+    (setq org-publish-base-dir "/home/qin/Documents/git/qinjian623.github.com/_org/_posts")
+    (setq org-publish-publishing-dir "/home/qin/Documents/git/qinjian623.github.com/_posts")
+    (setq org-todo-dir "~/Dropbox/TODO")
+    (defun toggle-fullscreen ()
+      "Toggle full screen"
+      (interactive)
+      (set-frame-parameter
+       nil 'fullscreen
+       (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))))
 (defun windows-nt-settings ()
   (progn
     (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
@@ -106,7 +117,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (if (equal system-type 'windows-nt)
         (windows-nt-settings))
     (if (equal system-type 'darwin)
-        (mac-os-settings))))
+        (mac-os-settings))
+    (if (equal system-type 'gnu/linux)
+        (linux-settings))))
 (system-var-settings)
 
 (defun org-mode-settings ()
@@ -118,7 +131,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              :base-extension "org"
              :publishing-directory org-publish-publishing-dir
              :recursive t
-             ;;        :htmlized-source t
+             :htmlized-source t
              :html-extension "html"
              :author-info nil
              :body-only t
