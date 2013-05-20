@@ -1,3 +1,4 @@
+
 (add-to-list 'load-path starter-kit-dir)
 (setq autoload-file (concat starter-kit-dir "loaddefs.el"))
 (setq package-user-dir (concat starter-kit-dir "elpa"))

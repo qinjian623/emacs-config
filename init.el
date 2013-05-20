@@ -20,53 +20,62 @@
 ;;(add-to-list 'package-archives
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
+
+
+(defun font-settings ()
 ;;; 字体设置，来自emacser.com
-(defun qiang-set-font (english-fonts
-                       english-font-size
-                       chinese-fonts
-                       &optional chinese-font-size)
-  "english-font-size could be set to \":pixelsize=18\" or a integer.
+  (defun qiang-set-font (english-fonts
+                         english-font-size
+                         chinese-fonts
+                         &optional chinese-font-size)
+    "english-font-size could be set to \":pixelsize=18\" or a integer.
 If set/leave chinese-font-size to nil, it will follow english-font-size"
-  (require 'cl)                         ; for find if
-  (let ((en-font (qiang-make-font-string
-                  (find-if #'qiang-font-existsp english-fonts)
-                  english-font-size))
-        (zh-font (font-spec :family (find-if #'qiang-font-existsp chinese-fonts)
-                            :size chinese-font-size)))
-    ;; Set the default English font
-    ;; 
-    ;; The following 2 method cannot make the font settig work in new frames.
-    ;; (set-default-font "Consolas:pixelsize=18")
-    ;; (add-to-list 'default-frame-alist '(font . "Consolas:pixelsize=18"))
-    ;; We have to use set-face-attribute
-    (message "Set English Font to %s" en-font)
-    (set-face-attribute
-     'default nil :font en-font)
-    ;; Set Chinese font 
-    ;; Do not use 'unicode charset, it will cause the english font setting invalid
-    (message "Set Chinese Font to %s" zh-font)
-    (dolist (charset '(kana han symbol cjk-misc bopomofo))
-      (set-fontset-font (frame-parameter nil 'font)
-                        charset
-                        zh-font))))
-(defun qiang-font-existsp (font)
-  (if (null (x-list-fonts font))
-      nil t))
-(defun qiang-make-font-string (font-name font-size)
-  (if (and (stringp font-size) 
-           (equal ":" (string (elt font-size 0))))
-      (format "%s%s" font-name font-size)
-    (format "%s %s" font-name font-size)))
+    (require 'cl)                         ; for find if
+    (let ((en-font (qiang-make-font-string
+                    (find-if #'qiang-font-existsp english-fonts)
+                    english-font-size))
+          (zh-font (font-spec :family (find-if #'qiang-font-existsp chinese-fonts)
+                              :size chinese-font-size)))
+      ;; Set the default English font
+      ;; 
+      ;; The following 2 method cannot make the font settig work in new frames.
+      ;; (set-default-font "Consolas:pixelsize=18")
+      ;; (add-to-list 'default-frame-alist '(font . "Consolas:pixelsize=18"))
+      ;; We have to use set-face-attribute
+      (message "Set English Font to %s" en-font)
+      (set-face-attribute
+       'default nil :font en-font)
+      ;; Set Chinese font 
+      ;; Do not use 'unicode charset, it will cause the english font setting invalid
+      (message "Set Chinese Font to %s" zh-font)
+      (dolist (charset '(kana han symbol cjk-misc bopomofo))
+        (set-fontset-font (frame-parameter nil 'font)
+                          charset
+                          zh-font))))
+  (defun qiang-font-existsp (font)
+    (if (null (x-list-fonts font))
+        nil t))
+  (defun qiang-make-font-string (font-name font-size)
+    (if (and (stringp font-size) 
+             (equal ":" (string (elt font-size 0))))
+        (format "%s%s" font-name font-size)
+      (format "%s %s" font-name font-size)))
+  (qiang-set-font
+     '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
+     '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
+)
 
 ;;; X-window settings
-(defun window-system-settings ()
-  (progn
-    (scroll-bar-mode -1)
-    (qiang-set-font
-     '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
-     '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))))
-(if window-system
-    (window-system-settings))
+(defun x-window-settings ()
+  (defun window-system-settings ()
+    (progn
+      (scroll-bar-mode -1)
+      (font-settings)))
+  (if window-system
+      (window-system-settings)))
+(message "X-window-settings")
+(x-window-settings)
+
 
 ;;;BEGIN [qinjian] highlight-tail settings
 ;; TODO Doesn't work yet.
@@ -78,49 +87,49 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;        ("#00c377" . 60)))
 ;;;END
 
-
-;;;BEGIN [qinjian]
-;;Settings with different platforms:
-(defun linux-settings ()
-  (progn
-    (setq org-publish-base-dir "/home/qin/Documents/git/qinjian623.github.com/_org/_posts")
-    (setq org-publish-publishing-dir "/home/qin/Documents/git/qinjian623.github.com/_posts")
-    (setq org-todo-dir "~/Dropbox/TODO")
-    (defun toggle-fullscreen ()
-      "Toggle full screen"
-      (interactive)
-      (set-frame-parameter
-       nil 'fullscreen
-       (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))))
-(defun windows-nt-settings ()
-  (progn
-    (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
-    (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
-    (setq org-todo-dir "F:\\Dropbox\\TODO")))
-(defun mac-os-settings ()
-  (progn
-    (setq org-publish-base-dir "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts")
-    (setq org-publish-publishing-dir "/Users/qin/Documents/git/qinjian623.github.com/_posts")
-    (setq org-todo-dir "~/Dropbox/TODO")
-    (setq mac-option-key-is-meta t)
-    (setq display-battery-mode t)
-    (defun toggle-fullscreen ()
-      "Toggle full screen"
-      (interactive)
-      (set-frame-parameter
-       nil 'fullscreen
-       (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))))
-;;System dependent settings
-
-(defun system-var-settings ()
-  (progn
-    (if (equal system-type 'windows-nt)
-        (windows-nt-settings))
-    (if (equal system-type 'darwin)
-        (mac-os-settings))
-    (if (equal system-type 'gnu/linux)
-        (linux-settings))))
-(system-var-settings)
+;;Settings with different os
+(defun os-settings ()
+  (defun linux-settings ()
+    (progn
+      (setq org-publish-base-dir "/home/qin/Documents/git/qinjian623.github.com/_org/_posts")
+      (setq org-publish-publishing-dir "/home/qin/Documents/git/qinjian623.github.com/_posts")
+      (setq org-todo-dir "~/Dropbox/TODO")
+      (defun toggle-fullscreen ()
+        "Toggle full screen"
+        (interactive)
+        (set-frame-parameter
+         nil 'fullscreen
+         (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))))
+  (defun windows-nt-settings ()
+    (progn
+      (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
+      (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
+      (setq org-todo-dir "F:\\Dropbox\\TODO")))
+  (defun mac-os-settings ()
+    (progn
+      (setq org-publish-base-dir "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts")
+      (setq org-publish-publishing-dir "/Users/qin/Documents/git/qinjian623.github.com/_posts")
+      (setq org-todo-dir "~/Dropbox/TODO")
+      (setq mac-option-key-is-meta t)
+      (setq display-battery-mode t)
+      (defun toggle-fullscreen ()
+        "Toggle full screen"
+        (interactive)
+        (set-frame-parameter
+         nil 'fullscreen
+         (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))))
+  ;;System dependent settings
+  (defun system-var-settings ()
+    (progn
+      (if (equal system-type 'windows-nt)
+          (windows-nt-settings))
+      (if (equal system-type 'darwin)
+          (mac-os-settings))
+      (if (equal system-type 'gnu/linux)
+          (linux-settings))))
+  (system-var-settings))
+(message "os-settings")
+(os-settings)
 
 (defun org-mode-settings ()
   (progn
@@ -158,10 +167,15 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 
 ;;;BEGIN [qinjian] Some global settings
-(setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
-(setq sentence-end-double-space nil)
-(setq default-buffer-file-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
+(defun global-misc-settings ()
+  (setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
+  (setq sentence-end-double-space nil)
+  (setq default-buffer-file-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+  (setq version-control 'never)
+  (setq make-backup-files nil))
+(message "global-misc-settings")
+(global-misc-settings)
 
 (defun global-key-setting ()
   (progn
@@ -181,9 +195,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq scroll-step 1
           scroll-margin 1
           scroll-conservatively 10000)
-    (display-time-mode t)
     (setq display-time-day-and-date t)
     (setq display-time-24hr-format t)
+    (display-time-mode t)
     (global-linum-mode 1)
     (tool-bar-mode -1)
     (menu-bar-mode -1)
@@ -224,18 +238,14 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
             (holiday-fixed 12 25 "圣诞节")
             (holiday-float 5 0 2 "母亲节")
             (holiday-float 6 0 3 "父亲节")))))
+(message "calendar-setting")
+(calendar-setting)
 
-(setq version-control 'never)
-(setq make-backup-files nil)
 ;;hooks region
 (defun common-mode-hooks()
   (auto-fill-mode -1)
   (toggle-truncate-lines -1)
   (hl-line-mode -1))
-
-(defun add-common-mode-hooks (l)
-  (dolist (item l)
-    (add-hook item 'common-mode-hooks)))
 
 (defun time-stamp-setting ()
   (progn
@@ -244,7 +254,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq time-stamp-warn-inactive t)
     (setq time-stamp-format "%:u %02m/%02d/%04y %02H:%02M:%02S")
     (add-hook 'write-file-hooks 'time-stamp)))
-
+(message "time-stamp-setting")
+(time-stamp-setting)
 
 ;;add hooks
 (defun add-common-mode-hooks (l)
@@ -261,14 +272,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
                          org-mode-hook))
 
 (defvar my-packages '())
+
 (add-hook 'emacs-startup-hook
           (lambda ()
             (dolist (p my-packages)
               (when (not (package-installed-p p))
                 (package-install p)))))
-
-(time-stamp-setting)
-(calendar-setting)
 
 
 ;;Clojure settings
@@ -322,7 +331,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (global-auto-complete-mode t))
 
 (defun my-ac-cc-mode-setup ()  
-  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))  
+  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
 ;; ac-source-gtags  
 
@@ -335,23 +344,23 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (add-hook 'after-init-hook
           `(lambda ()
-             ;; remember this directory
              (setq starter-kit-dir
-                   ,(file-name-directory (or load-file-name (buffer-file-name))))
+                   (file-name-directory (or "~/.emacs.d/init.el" (buffer-file-name))))
              ;; load up the starter kit
-             (require 'org)
              (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
+             ;;(require 'org)
+	     (org-latex-setting)
              (add-to-list 'package-archives
                           '("melpa" . "http://melpa.milkbox.net/packages/") t)
              (starter-kit-load "lisp")
              (auto-complete-settings)
+	     (switch-window-setting)
              (global-setting)
              (ac-nrepl-settings)
              ;; If setting function does not work properly, Just put it at the end. 
              (auto-complete-clang-settings)
              (require 'session)
              (session-initialize)
-
              (load "desktop")
              (desktop-load-default)
              (desktop-read)
@@ -377,25 +386,35 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;)
 ;;)
 
+(defun org-latex-setting()
+  (require 'org-latex)
+  (setq org-export-latex-listings 'minted)
+  ;;FIXME comment out this, need to find the reason 
+  ;;(add-to-list 'org-export-latex-packages-alist '("" "minted"))
+  (setq org-export-latex-minted-options
+	'(("frame" "lines")
+	  ("fontsize" "\\scriptsize")
+	  ("linenos" "true")))
+  (setq org-export-latex-hyperref-format "\\ref{%s}")
+  (setq org-latex-preview-ltxpng-directory "~/"))
+;;Switch-window settings
+(defun switch-window-setting()
+  (require 'switch-window)
+  (setq switch-window-shortcut-style 'qwerty))
 
-(require 'org-latex)
-(setq org-export-latex-listings 'minted)
-(add-to-list 'org-export-latex-packages-alist '("" "minted"))
-(setq org-export-latex-minted-options
-      '(("frame" "lines")
-        ("fontsize" "\\scriptsize")
-        ("linenos" "true")))
-(setq org-export-latex-hyperref-format "\\ref{%s}")
-;;(require 'switch-window)
-;;(setq switch-window-shortcut-style 'qwerty)
-(setq org-latex-preview-ltxpng-directory "~/")
+
+
+
+;; Emms Music Settings
 (defun emms-settings ()
   (progn
     (require 'emms-setup)
     (emms-all)
     (emms-default-players)
-    (setq emms-source-file-default-directory "~/Music/")))
+    (setq emms-source-file-default-directory "~/音乐/")))
 
+
+;; C/C++ language settings
 (defun c-settings ()
   (progn
     (setq ecb-auto-activate 1)
@@ -411,6 +430,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (require 'srecode)
     (global-srecode-minor-mode 1)))
 
+
 (defun my-cedet-hook ()
   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
   (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
@@ -424,4 +444,5 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (linum-mode t)
              (semantic-mode t)))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
-(local-set-key (kbd "C-m") 'set-mark-command)
+;;(local-set-key (kbd "C-m") 'set-mark-command)
+
