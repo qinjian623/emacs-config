@@ -19,7 +19,8 @@
 
 ;;(add-to-list 'package-archives
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
+(setq debug-on-error t)
+(defvar yas-snippet-dirs nil)
 (defun font-settings ()
   ;; 字体设置，来自emacser.com
   (defun qiang-set-font (english-fonts
@@ -284,6 +285,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (add-hook 'nrepl-mode-hook
           'nrepl-turn-on-eldoc-mode)
+(message "clojure settings")
 
 (defun ac-nrepl-settings ()
   (progn
@@ -291,6 +293,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
     (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
     (eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))))
+(message "ac-nrepl settings")
 
 ;;This is for the auto-complete-clang
 ;;TODO 
@@ -303,6 +306,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq ac-quick-help-delay 0.5)
     (define-key ac-mode-map  [(control tab)] 'auto-complete)
     (my-ac-config)))
+(message "auto-complete settings")
 
 ;; (ac-set-trigger-key "TAB")  
 ;; (define-key ac-mode-map  [(control tab)] 'auto-complete)  
@@ -330,7 +334,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun my-ac-cc-mode-setup ()  
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
-
+(message "ac-config")
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
 ;; ac-source-gtags  
 
@@ -340,19 +344,26 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
          (global-key-setting)
          (global-views-setting)
          (setq ring-bell-function (lambda ()(message "Bing!")))))
+(message "global-setting")
 
 (add-hook 'after-init-hook
           `(lambda ()
+             (message "lambda0")
              (setq starter-kit-dir
                    (file-name-directory (or "~/.emacs.d/init.el" (buffer-file-name))))
+             (message "lambda1")
              ;; load up the starter kit
              (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
+             (require 'yasnippet)
              ;;(require 'org)
 	     ;;(org-latex-setting)
+             (message "lambda2")
              (add-to-list 'package-archives
                           '("melpa" . "http://melpa.milkbox.net/packages/") t)
              (starter-kit-load "lisp")
+             (message "lambda3")
              (auto-complete-settings)
+             (message "lambda4")
 	     (switch-window-setting)
              (global-setting)
              (ac-nrepl-settings)
@@ -373,6 +384,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
           '(lambda () (progn
                     (rainbow-delimiters-mode t)
                     (hl-line-mode -1))))
+(message "emacs-lisp-mode-hook-setting")
 ;;Session settings
 (desktop-save-mode t)
 
@@ -397,11 +409,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 	  ("linenos" "true")))
   (setq org-export-latex-hyperref-format "\\ref{%s}")
   (setq org-latex-preview-ltxpng-directory "~/"))
+(message "org-latex-setting")
 ;;Switch-window settings
 (defun switch-window-setting()
   (require 'switch-window)
   (setq switch-window-shortcut-style 'qwerty))
-
+(message "switch-window-setting")
 
 
 
@@ -412,7 +425,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (emms-all)
     (emms-default-players)
     (setq emms-source-file-default-directory "~/音乐/")))
-
+(message "emms-setting")
 
 ;; C/C++ language settings
 (defun c-settings ()
@@ -434,12 +447,14 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
                                   ;;"bibtex %b"
                                   ;;"xelatex -interaction nonstopmode -output-directory %o %f"
                                   "xelatex -output-directory %o %f"))
+(message "c-setting")
 
 (defun my-cedet-hook ()
   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
   (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
   (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
   (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle))
+(message "my-cedet-hook-setting")
 
 (add-hook 'c-mode-hook
           '(lambda ()
@@ -448,5 +463,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (linum-mode t)
              (semantic-mode t)))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
+(message "c-mode-hook-setting")
 ;;(local-set-key (kbd "C-m") 'set-mark-command)
 

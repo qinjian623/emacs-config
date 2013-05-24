@@ -1,4 +1,5 @@
 auto-save-list/
+semanticdb/*
 tramp
 srecode-map.el
 elpa/archives/
