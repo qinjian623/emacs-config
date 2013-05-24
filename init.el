@@ -20,10 +20,8 @@
 ;;(add-to-list 'package-archives
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-
-
 (defun font-settings ()
-;;; 字体设置，来自emacser.com
+  ;; 字体设置，来自emacser.com
   (defun qiang-set-font (english-fonts
                          english-font-size
                          chinese-fonts
@@ -61,9 +59,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
         (format "%s%s" font-name font-size)
       (format "%s %s" font-name font-size)))
   (qiang-set-font
-     '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
-     '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
-)
+   '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
+   '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
+  )
 
 ;;; X-window settings
 (defun x-window-settings ()
@@ -91,9 +89,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (defun os-settings ()
   (defun linux-settings ()
     (progn
-      (setq org-publish-base-dir "/home/qin/Documents/git/qinjian623.github.com/_org/_posts")
-      (setq org-publish-publishing-dir "/home/qin/Documents/git/qinjian623.github.com/_posts")
-      (setq org-todo-dir "~/Dropbox/TODO")
+      (setp org-publish-base-dir "/home/qin/Documents/git/qinjian623.github.com/_org/_posts")
+      (setp org-publish-publishing-dir "/home/qin/Documents/git/qinjian623.github.com/_posts")
+      (setp org-todo-dir "~/Dropbox/TODO")
       (defun toggle-fullscreen ()
         "Toggle full screen"
         (interactive)
@@ -200,7 +198,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (display-time-mode t)
     (global-linum-mode 1)
     (tool-bar-mode -1)
-    (menu-bar-mode -1)
+    (menu-bar-mode 1)
     (setq frame-title-format "%n%F/%b")))
 
 (defun calendar-setting ()
@@ -332,6 +330,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun my-ac-cc-mode-setup ()  
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
+
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
 ;; ac-source-gtags  
 
@@ -349,7 +348,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              ;; load up the starter kit
              (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
              ;;(require 'org)
-	     (org-latex-setting)
+	     ;;(org-latex-setting)
              (add-to-list 'package-archives
                           '("melpa" . "http://melpa.milkbox.net/packages/") t)
              (starter-kit-load "lisp")
@@ -366,7 +365,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (desktop-read)
              (ac-flyspell-workaround)
              (emms-settings)
-             (c-settings)))
+             (c-settings)
+             (message "ALL INIT FINISHED")))
 
 ;;LISP settings
 (add-hook 'emacs-lisp-mode-hook
@@ -430,6 +430,10 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (require 'srecode)
     (global-srecode-minor-mode 1)))
 
+(setq org-latex-pdf-process (list "xelatex -output-directory %o %f"
+                                  ;;"bibtex %b"
+                                  ;;"xelatex -interaction nonstopmode -output-directory %o %f"
+                                  "xelatex -output-directory %o %f"))
 
 (defun my-cedet-hook ()
   (local-set-key [(control return)] 'semantic-ia-complete-symbol)

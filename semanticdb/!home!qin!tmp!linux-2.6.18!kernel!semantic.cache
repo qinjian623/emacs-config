@@ -1,0 +1,516 @@
+;; Object kernel/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "kernel/"
+  :tables (list 
+   (semanticdb-table "hrtimer.c"
+    :major-mode 'c-mode
+    :tags 
+        '( ("linux/cpu.h" include (:system-flag t) nil [808 830])
+            ("linux/module.h" include (:system-flag t) nil [831 856])
+            ("linux/percpu.h" include (:system-flag t) nil [857 882])
+            ("linux/hrtimer.h" include (:system-flag t) nil [883 909])
+            ("linux/notifier.h" include (:system-flag t) nil [910 937])
+            ("linux/syscalls.h" include (:system-flag t) nil [938 965])
+            ("linux/interrupt.h" include (:system-flag t) nil [966 994])
+            ("asm/uaccess.h" include (:system-flag t) nil [996 1020])
+            ("ktime_get" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [1152 1157]))                  
+                :type ("ktime_t" type (:type "class") nil nil))
+                nil [1127 1254])
+            ("ktime_get_real" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [1399 1404]))                  
+                :type ("ktime_t" type (:type "class") nil nil))
+                nil [1369 1487])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("ktime_get_real" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1507 1522]))                  
+                :type "int")
+                nil [1489 1523])
+            ("MAX_HRTIMER_BASES" variable (:constant-flag t) nil [1897 1914])
+            ("ktime_get_ts" function
+               (:arguments 
+                  ( ("ts" variable
+                       (:pointer 1
+                        :type ("timespec" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2526 2546]))                  
+                :type "void")
+                nil [2508 2828])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("ktime_get_ts" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2847 2860]))                  
+                :type "int")
+                nil [2829 2861])
+            ("hrtimer_get_softirq_time" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("base" variable
+                       (:pointer 1
+                        :type ("hrtimer_base" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2994 3020]))                  
+                :type "void")
+                nil [2957 3346])
+            ("set_curr_timer" variable (:constant-flag t) nil [5398 5412])
+            ("lock_hrtimer_base" function
+               (:pointer 1
+                :typemodifiers ("static" "inline")
+                :arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [5492 5520])
+                    ("flags" variable
+                       (:pointer 1
+                        :type "unsigned long")
+                        (reparse-symbol arg-sub-list) [5521 5542]))                  
+                :type ("hrtimer_base" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [5438 5645])
+            ("switch_hrtimer_base" variable (:constant-flag t) nil [5655 5674])
+            ("ktime_add_ns" function
+               (:arguments 
+                  ( ("kt" variable
+                       (:constant-flag t
+                        :type ("ktime_t" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [6076 6093])
+                    ("nsec" variable (:type ("u64" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6094 6103]))                  
+                :type ("ktime_t" type (:type "class") nil nil))
+                nil [6055 6306])
+            ("ktime_divns" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("kt" variable
+                       (:constant-flag t
+                        :type ("ktime_t" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [6463 6480])
+                    ("div" variable (:type ("s64" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6481 6489]))                  
+                :type "unsigned long")
+                nil [6430 6748])
+            ("unlock_hrtimer_base" function
+               (:typemodifiers ("static" "inline")
+                :arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [6968 6996])
+                    ("flags" variable
+                       (:pointer 1
+                        :type "unsigned long")
+                        (reparse-symbol arg-sub-list) [6997 7018]))                  
+                :type "void")
+                nil [6929 7075])
+            ("hrtimer_forward" function
+               (:arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [7360 7382])
+                    ("now" variable (:type ("ktime_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7383 7395])
+                    ("interval" variable (:type ("ktime_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7396 7413]))                  
+                :type "unsigned long")
+                nil [7330 8035])
+            ("enqueue_hrtimer" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8253 8275])
+                    ("base" variable
+                       (:pointer 1
+                        :type ("hrtimer_base" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8276 8302]))                  
+                :type "void")
+                nil [8225 9093])
+            ("__remove_hrtimer" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9227 9249])
+                    ("base" variable
+                       (:pointer 1
+                        :type ("hrtimer_base" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9250 9276]))                  
+                :type "void")
+                nil [9198 9537])
+            ("remove_hrtimer" function
+               (:typemodifiers ("static" "inline")
+                :arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9625 9647])
+                    ("base" variable
+                       (:pointer 1
+                        :type ("hrtimer_base" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9648 9674]))                  
+                :type "int")
+                nil [9592 9767])
+            ("hrtimer_start" function
+               (:arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [10051 10073])
+                    ("tim" variable (:type ("ktime_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10074 10086])
+                    ("mode" variable
+                       (:constant-flag t
+                        :type ("hrtimer_mode" type (:type "enum") nil nil))
+                        (reparse-symbol arg-sub-list) [10087 10116]))                  
+                :type "int")
+                nil [10033 10976])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("hrtimer_start" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10995 11009]))                  
+                :type "int")
+                nil [10977 11010])
+            ("hrtimer_try_to_cancel" function
+               (:arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [11302 11324]))                  
+                :type "int")
+                nil [11276 11559])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("hrtimer_try_to_cancel" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11578 11600]))                  
+                :type "int")
+                nil [11560 11601])
+            ("hrtimer_cancel" function
+               (:arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [11821 11843]))                  
+                :type "int")
+                nil [11802 11951])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("hrtimer_cancel" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11970 11985]))                  
+                :type "int")
+                nil [11952 11986])
+            ("hrtimer_get_remaining" function
+               (:arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12115 12143]))                  
+                :type ("ktime_t" type (:type "class") nil nil))
+                nil [12085 12364])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("hrtimer_get_remaining" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12383 12405]))                  
+                :type "int")
+                nil [12365 12406])
+            ("hrtimer_init" function
+               (:arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [13487 13509])
+                    ("clock_id" variable (:type ("clockid_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13510 13529])
+                    ("mode" variable (:type ("hrtimer_mode" type (:type "enum") nil nil)) (reparse-symbol arg-sub-list) [13534 13557]))                  
+                :type "void")
+                nil [13469 13843])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("hrtimer_init" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13862 13875]))                  
+                :type "int")
+                nil [13844 13876])
+            ("hrtimer_get_res" function
+               (:arguments 
+                  ( ("which_clock" variable
+                       (:constant-flag t
+                        :type ("clockid_t" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [14166 14194])
+                    ("tp" variable
+                       (:pointer 1
+                        :type ("timespec" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14195 14215]))                  
+                :type "int")
+                nil [14146 14361])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("hrtimer_get_res" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14380 14396]))                  
+                :type "int")
+                nil [14362 14397])
+            ("run_hrtimer_queue" function
+               (:typemodifiers ("static" "inline")
+                :arguments 
+                  ( ("base" variable
+                       (:pointer 1
+                        :type ("hrtimer_base" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14481 14507]))                  
+                :type "void")
+                nil [14444 15239])
+            ("hrtimer_run_queues" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [15331 15336]))                  
+                :type "void")
+                nil [15307 15514])
+            ("hrtimer_wakeup" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("timer" variable
+                       (:pointer 1
+                        :type ("hrtimer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [15577 15599]))                  
+                :type "int")
+                nil [15551 15805])
+            ("hrtimer_init_sleeper" function
+               (:arguments 
+                  ( ("sl" variable
+                       (:pointer 1
+                        :type ("hrtimer_sleeper" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [15833 15860])
+                    ("task" variable
+                       (:pointer 1
+                        :type ("task_struct" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [15861 15886]))                  
+                :type "void")
+                nil [15807 15946])
+            ("do_nanosleep" function
+               (:arguments 
+                  ( ("t" variable
+                       (:pointer 1
+                        :type ("hrtimer_sleeper" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [15980 16006])
+                    ("mode" variable (:type ("hrtimer_mode" type (:type "enum") nil nil)) (reparse-symbol arg-sub-list) [16007 16030]))                  
+                :type ("__sched" type (:type "class") nil nil))
+                nil [15959 16311])
+            ("nanosleep_restart" function
+               (:arguments 
+                  ( ("restart" variable
+                       (:pointer 1
+                        :type ("restart_block" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [16351 16381]))                  
+                :type ("__sched" type (:type "class") nil nil))
+                nil [16325 17079])
+            ("hrtimer_nanosleep" function
+               (:arguments 
+                  ( ("rqtp" variable
+                       (:pointer 1
+                        :type ("timespec" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [17104 17126])
+                    ("__user" variable (:type ("timespec" type
+                         (:prototype t
+                          :type "struct")
+                          nil nil)) (reparse-symbol arg-sub-list) [17127 17151])
+                    ("" variable (:type ("rmtp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [17151 17156])
+                    ("mode" variable
+                       (:constant-flag t
+                        :type ("hrtimer_mode" type (:type "enum") nil nil))
+                        (reparse-symbol arg-sub-list) [17166 17195])
+                    ("clockid" variable
+                       (:constant-flag t
+                        :type ("clockid_t" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [17196 17220]))                  
+                :type "long")
+                nil [17081 18077])
+            ("sys_nanosleep" function
+               (:arguments 
+                  ( ("__user" variable (:type ("timespec" type
+                         (:prototype t
+                          :type "struct")
+                          nil nil)) (reparse-symbol arg-sub-list) [18109 18133])
+                    ("" variable (:type ("rqtp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [18133 18138])
+                    ("__user" variable (:type ("timespec" type
+                         (:prototype t
+                          :type "struct")
+                          nil nil)) (reparse-symbol arg-sub-list) [18139 18163])
+                    ("" variable (:type ("rmtp" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [18163 18168]))                  
+                :type "long")
+                nil [18090 18371])
+            ("init_hrtimers_cpu" function
+               (:arguments 
+                  ( ("cpu" variable (:type "int") (reparse-symbol arg-sub-list) [18470 18478]))                  
+                :type ("__devinit" type (:type "class") nil nil))
+                nil [18442 18685])
+            ("hrtimer_cpu_notify" function
+               (:arguments 
+                  ( ("self" variable
+                       (:pointer 1
+                        :type ("notifier_block" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [19691 19719])
+                    ("action" variable (:type "unsigned long") (reparse-symbol arg-sub-list) [19725 19746])
+                    ("hcpu" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [19747 19758]))                  
+                :type ("__cpuinit" type (:type "class") nil nil))
+                nil [19662 19991])
+            ("hrtimers_nb" variable (:type ("__cpuinitdata" type (:type "class") nil nil)) nil [20022 20092])
+            ("hrtimers_init" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [20120 20125]))                  
+                :type ("__init" type (:type "class") nil nil))
+                nil [20099 20272]))          
+    :file "hrtimer.c"
+    :pointmax 20258
+    :fsize 20257
+    :lastmodtime '(17680 47246)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("set_curr_timer" (spp-arg-list ("b" "t") 5396 . 5402) . 
+              ((DO "do" 5404 . 5406) (semantic-list "{ }" 5407 . 5410) (WHILE "while" 5411 . 5416) (semantic-list "(0)" 5417 . 5420)))
+          ("switch_hrtimer_base" (spp-arg-list ("t" "b") 5658 . 5664) . ((semantic-list "(b)" 5665 . 5668)))
+          ("MAX_HRTIMER_BASES" . ((number "2" 1899 . 1900)))
+          )
+
+    )
+   (semanticdb-table "cpu.c"
+    :major-mode 'c-mode
+    :tags 
+        '( ("linux/proc_fs.h" include (:system-flag t) nil [108 134])
+            ("linux/smp.h" include (:system-flag t) nil [135 157])
+            ("linux/init.h" include (:system-flag t) nil [158 181])
+            ("linux/notifier.h" include (:system-flag t) nil [182 209])
+            ("linux/sched.h" include (:system-flag t) nil [210 234])
+            ("linux/unistd.h" include (:system-flag t) nil [235 260])
+            ("linux/cpu.h" include (:system-flag t) nil [261 283])
+            ("linux/module.h" include (:system-flag t) nil [284 309])
+            ("linux/kthread.h" include (:system-flag t) nil [310 336])
+            ("linux/stop_machine.h" include (:system-flag t) nil [337 368])
+            ("linux/mutex.h" include (:system-flag t) nil [369 393])
+            ("DEFINE_MUTEX" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("cpu_add_remove_lock" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [461 481]))                  
+                :type "int")
+                nil [441 482])
+            ("DEFINE_MUTEX" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("cpu_bitmask_lock" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [503 520]))                  
+                :type "int")
+                nil [483 521])
+            ("BLOCKING_NOTIFIER_HEAD" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("cpu_chain" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [567 577]))                  
+                :type ("__cpuinitdata" type (:type "class") nil nil))
+                nil [523 578])
+            ("register_cpu_notifier" function
+               (:arguments 
+                  ( ("nb" variable
+                       (:pointer 1
+                        :type ("notifier_block" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [1442 1468]))                  
+                :type ("__cpuinit" type (:type "class") nil nil))
+                nil [1410 1530])
+            ("cpu_up" function
+               (:arguments 
+                  ( ("cpu" variable (:type "unsigned int") (reparse-symbol arg-sub-list) [4170 4187]))                  
+                :type ("__devinit" type (:type "class") nil nil))
+                nil [4153 5003]))          
+    :file "cpu.c"
+    :pointmax 5004
+    :fsize 5003
+    :lastmodtime '(17680 47246)
+    :unmatched-syntax '((INT 4149 . 4152) (INT 1406 . 1409))
+    )
+   )
+  :file "!home!qin!tmp!linux-2.6.18!kernel!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

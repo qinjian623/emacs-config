@@ -1,0 +1,685 @@
+;; Object geocodingd/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "geocodingd/"
+  :tables (list 
+   (semanticdb-table "searcher.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("unistd.h" include (:system-flag t) nil [1 20])
+            ("sys/types.h" include (:system-flag t) nil [21 43])
+            ("sys/stat.h" include (:system-flag t) nil [44 65])
+            ("fcntl.h" include (:system-flag t) nil [66 84])
+            ("errno.h" include (:system-flag t) nil [85 103])
+            ("list" include (:system-flag t) nil [104 119])
+            ("math.h" include (:system-flag t) nil [120 137])
+            ("mglobal.h" include (:system-flag t) nil [139 159])
+            ("addrinfo.h" include (:system-flag t) nil [160 181])
+            ("mstringutil.h" include (:system-flag t) nil [182 206])
+            ("mconfig.h" include (:system-flag t) nil [207 227])
+            ("mquicksort.h" include (:system-flag t) nil [228 251])
+            ("segproc.h" include (:system-flag t) nil [252 272])
+            ("mmiscutil.h" include (:system-flag t) nil [273 295])
+            ("saasanalyzer.h" include (:system-flag t) nil [296 321])
+            ("geocodingdconfiger.h" include nil nil [323 354])
+            ("infoindex.h" include nil nil [355 377])
+            ("wordindex.h" include nil nil [378 400])
+            ("streetindex.h" include nil nil [401 425])
+            ("idtablevector.h" include nil nil [426 452])
+            ("cityquery.h" include nil nil [453 475])
+            ("standardstreet.h" include nil nil [476 503])
+            ("searchinfo.h" include nil nil [504 527])
+            ("preprocessor.h" include nil nil [528 553])
+            ("minicoordinateconfig.h" include nil nil [554 587])
+            ("areaindex.h" include nil nil [588 610])
+            ("correcteddata.h" include nil nil [611 637])
+            ("instantsearch.h" include nil nil [638 664])
+            ("districtindex.h" include nil nil [665 691])
+            ("searcher.h" include nil nil [693 714])
+            ("SearchResult::_match_reason_in_confidence_ratio" variable
+               (:dereference 1
+                :type "int")
+                nil [716 1662])
+            ("Searcher::_entity_valves" variable
+               (:dereference 1
+                :type "float")
+                nil [1664 1733])
+            ("Searcher::_entity_score_coes" variable
+               (:dereference 1
+                :type "double")
+                nil [1734 1812])
+            ("Searcher::_max_accept_dis_street_entity" variable (:type "double") nil [1813 1860])
+            ("Searcher::_max_accept_dis_same_name_entity" variable (:type "double") nil [1861 1911])
+            ("Searcher" function
+               (:constructor-flag t
+                :parent "Searcher"
+                :type ("Searcher" type (:type "class") nil nil))
+                nil [1913 1986])
+            ("init" function
+               (:parent "Searcher"
+                :type "int")
+                nil [1988 5285])
+            ("search" function
+               (:parent "Searcher"
+                :arguments 
+                  ( ("search_info" variable
+                       (:pointer 1
+                        :type ("SearchInfo" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [5410 5434]))                  
+                :type "int")
+                nil [5389 8804])
+            ("run" function
+               (:parent "Searcher"
+                :arguments 
+                  ( ("search_material" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SearchMaterial" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [8824 8862])
+                    ("search_res_bunch" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("SearchResult" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8863 8902])
+                    ("match_point" variable
+                       (:reference 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [8903 8920]))                  
+                :type "int")
+                nil [8806 8999])
+            ("deviation_process" function
+               (:parent "Searcher"
+                :arguments 
+                  ( ("search_material" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SearchMaterial" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9033 9071])
+                    ("search_res_bunch" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("SearchResult" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9072 9111])
+                    ("begin" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9112 9125]))                  
+                :type "int")
+                nil [9001 9141])
+            ("get_best_entity_res" function
+               (:pointer 1
+                :parent "Searcher"
+                :arguments 
+                  ( ("entity_res" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("EntityResult" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9190 9221])
+                    ("min_score" variable (:type "double") (reparse-symbol arg-sub-list) [9222 9239])
+                    ("street_index_nodes" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("StreetIndexNode" type (:pointer 1) nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9240 9292])
+                    ("area_res" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("AreaResult" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9293 9320])
+                    ("street_implicit" variable (:type "bool") (reparse-symbol arg-sub-list) [9321 9342])
+                    ("info_index" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("InfoIndex" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [9343 9371]))                  
+                :type ("EntityIndexNode" type (:type "class") nil nil))
+                nil [9143 12930])
+            ("get_entity_near_street" function
+               (:pointer 1
+                :parent "Searcher"
+                :arguments 
+                  ( ("ss" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("StandardStreetNode" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [12982 13011])
+                    ("entity_res" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("EntityResult" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [13012 13043])
+                    ("min_score" variable (:type "float") (reparse-symbol arg-sub-list) [13044 13060])
+                    ("info_index" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("InfoIndex" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [13061 13089]))                  
+                :type ("EntityIndexNode" type (:type "class") nil nil))
+                nil [12932 14038])
+            ("is_unique_entity" function
+               (:parent "Searcher"
+                :arguments 
+                  ( ("entity_res" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("EntityResult" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [14072 14103]))                  
+                :type "bool")
+                nil [14040 14122])
+            ("get_best_street_res" function
+               (:parent "Searcher"
+                :arguments 
+                  ( ("street_res" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("StreetResult" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [14158 14189])
+                    ("res" variable
+                       (:reference 1
+                        :type ("SearchResult" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [14190 14208]))                  
+                :type "int")
+                nil [14124 14352])
+            ("delete_vals" function
+               (:parent "Searcher"
+                :arguments 
+                  ( ("entity_reses" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("EntityResult" type (:pointer 1) nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14381 14418])
+                    ("street_reses" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("StreetResult" type (:pointer 1) nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14419 14456])
+                    ("area_reses" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("AreaResult" type (:pointer 1) nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14457 14490]))                  
+                :type "void")
+                nil [14354 14760])
+            ("search_city" function
+               (:parent "Searcher"
+                :arguments 
+                  ( ("search_material" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("SearchMaterial" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [14967 15005])
+                    ("search_reses" variable
+                       (:reference 1
+                        :type ("vector" type
+                             (:template-specifier 
+                                ( ("SearchResult" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [15006 15041])
+                    ("match_point" variable
+                       (:reference 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [15042 15059]))                  
+                :type ("Int" type (:type "class") nil nil))
+                nil [14941 45541]))          
+    :file "searcher.cpp"
+    :pointmax 45542
+    :fsize 47185
+    :lastmodtime '(20885 60389)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "geocodingdconfiger.h"
+    :file "geocodingdconfiger.h"
+    :fsize 1590
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "infoindex.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("_GEOCODING_INFO_INDEX_H_" variable (:constant-flag t) nil [42 66])
+            ("list" include (:system-flag t) nil [68 83])
+            ("string" include (:system-flag t) nil [84 101])
+            ("vector" include (:system-flag t) nil [102 119])
+            ("infoindexdata.h" include (:system-flag t) nil [121 147])
+            ("minicoordinate.h" include nil nil [149 176])
+            ("minicoordinateconfig.h" include nil nil [177 210])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [212 232])
+            ("POIInfo" type
+               (:prototype t
+                :type "class")
+                nil [234 248])
+            ("WordIndex" type
+               (:prototype t
+                :type "class")
+                nil [249 265])
+            ("InfoIndexNode" type
+               (:members 
+                  ( ("_offset" variable (:type ("uint32_t" type (:type "class") nil nil)) (reparse-symbol classsubparts) [291 308])
+                    ("_in_street" variable (:type "bool") (reparse-symbol classsubparts) [310 326])
+                    ("_mini_coordinate" variable (:type ("MiniCoordinate" type (:type "class") nil nil)) (reparse-symbol classsubparts) [328 360])
+                    ("_absolute_full_scores" variable (:type ("vector" type
+                         (:template-specifier 
+                            ( ("float" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [362 398]))                  
+                :type "struct")
+                nil [267 401])
+            ("GenInfoIndexNode" type
+               (:members 
+                  ( ("_index_node" variable (:type ("InfoIndexNode" type (:type "class") nil nil)) (reparse-symbol classsubparts) [430 456])
+                    ("_entities_segs_vector" variable (:type ("vector" type
+                         (:template-specifier 
+                            ( ("list" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [458 502])
+                    ("_coordinate" variable (:type ("Coordinate" type (:type "class") nil nil)) (reparse-symbol classsubparts) [504 527]))                  
+                :type "struct")
+                nil [403 530])
+            ("InfoIndex" type
+               (:superclasses 
+                  ( ("InfoIndexData" type
+                       (:protection "public"
+                        :type "class")
+                        nil nil))                  
+                :members 
+                  ( ("private" label nil (reparse-symbol classsubparts) [573 581])
+                    ("_gen_vector" variable (:type ("vector" type
+                         (:template-specifier 
+                            ( ("GenInfoIndexNode" type (:pointer 1) nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [583 622])
+                    ("_index_vector" variable (:type ("vector" type
+                         (:template-specifier 
+                            ( ("InfoIndexNode" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [624 660])
+                    ("_district_centers" variable (:type ("list" type
+                         (:template-specifier 
+                            ( ("Coordinate" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [662 697])
+                    ("_city_center" variable (:type ("Coordinate" type (:type "class") nil nil)) (reparse-symbol classsubparts) [699 723])
+                    ("_city_center_doc_id" variable (:type ("uint32_t" type (:type "class") nil nil)) (reparse-symbol classsubparts) [725 754])
+                    ("_city_lons" variable (:type ("vector" type
+                         (:template-specifier 
+                            ( ("float" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [756 781])
+                    ("_city_lats" variable (:type ("vector" type
+                         (:template-specifier 
+                            ( ("float" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [783 808])
+                    ("_city_coordinate_sum" variable (:type ("Coordinate" type (:type "class") nil nil)) (reparse-symbol classsubparts) [811 843])
+                    ("_district_center_sum" variable (:type ("Coordinate" type (:type "class") nil nil)) (reparse-symbol classsubparts) [845 877])
+                    ("_district_end_docids" variable (:type ("list" type
+                         (:template-specifier 
+                            ( ("uint32_t" type nil nil nil))                            
+                          :type "class")
+                          nil nil)) (reparse-symbol classsubparts) [880 916])
+                    ("public" label nil (reparse-symbol classsubparts) [918 925])
+                    ("load" function
+                       (:prototype-flag t
+                        :arguments 
+                          ( ("path" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("string" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [936 955]))                          
+                        :type "int")
+                        (reparse-symbol classsubparts) [927 956])
+                    ("get_info_node" function
+                       (:prototype-flag t
+                        :pointer 1
+                        :constant-flag t
+                        :arguments 
+                          ( ("doc_id" variable (:type ("uint32_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [994 1010]))                          
+                        :type ("InfoIndexNode" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [959 1017])
+                    ("get_city_center_doc_id" function
+                       (:prototype-flag t
+                        :type ("uint32_t" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [1019 1059]))                  
+                :type "class")
+                nil [532 1062]))          
+    :file "infoindex.h"
+    :pointmax 1071
+    :fsize 1070
+    :lastmodtime '(20885 60389)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("_GEOCODING_INFO_INDEX_H_")
+          )
+
+    )
+   (semanticdb-table "wordindex.h"
+    :file "wordindex.h"
+    :fsize 2316
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "streetindex.h"
+    :file "streetindex.h"
+    :fsize 2060
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "idtablevector.h"
+    :file "idtablevector.h"
+    :fsize 568
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "cityquery.h"
+    :file "cityquery.h"
+    :fsize 1999
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "standardstreet.h"
+    :file "standardstreet.h"
+    :fsize 1434
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "searchinfo.h"
+    :file "searchinfo.h"
+    :fsize 3443
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "areaindex.h"
+    :file "areaindex.h"
+    :fsize 621
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "correcteddata.h"
+    :file "correcteddata.h"
+    :fsize 491
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "instantsearch.h"
+    :file "instantsearch.h"
+    :fsize 1416
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "districtindex.h"
+    :file "districtindex.h"
+    :fsize 779
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "searcher.h"
+    :file "searcher.h"
+    :fsize 9687
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "infoindex.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("math.h" include (:system-flag t) nil [1 18])
+            ("float.h" include (:system-flag t) nil [19 37])
+            ("mglobal.h" include (:system-flag t) nil [39 59])
+            ("csvfile.h" include (:system-flag t) nil [60 80])
+            ("mstringutil.h" include (:system-flag t) nil [81 105])
+            ("entityinfo.h" include (:system-flag t) nil [106 129])
+            ("mmiscutil.h" include (:system-flag t) nil [130 152])
+            ("poiinfo.h" include nil nil [154 174])
+            ("wordindex.h" include nil nil [175 197])
+            ("infoindex.h" include nil nil [199 221])
+            ("get_info_node" function
+               (:pointer 1
+                :parent "InfoIndex"
+                :constant-flag t
+                :arguments 
+                  ( ("doc_id" variable (:type ("uint32_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [269 285]))                  
+                :type ("InfoIndexNode" type (:type "class") nil nil))
+                nil [223 407])
+            ("load" function
+               (:parent "InfoIndex"
+                :arguments 
+                  ( ("path" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("string" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [429 448]))                  
+                :type "int")
+                nil [409 2163])
+            ("get_city_center_doc_id" function
+               (:parent "InfoIndex"
+                :type ("uint32_t" type (:type "class") nil nil))
+                nil [2165 2248]))          
+    :file "infoindex.cpp"
+    :pointmax 2249
+    :fsize 2296
+    :lastmodtime '(20885 60389)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "poiinfo.h"
+    :file "poiinfo.h"
+    :fsize 951
+    :lastmodtime '(20885 60389)
+    )
+   (semanticdb-table "geocodingd.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("sys/types.h" include (:system-flag t) nil [1 23])
+            ("string.h" include (:system-flag t) nil [24 43])
+            ("sys/stat.h" include (:system-flag t) nil [44 65])
+            ("fcntl.h" include (:system-flag t) nil [66 84])
+            ("stdlib.h" include (:system-flag t) nil [85 104])
+            ("iomanip" include (:system-flag t) nil [105 123])
+            ("iostream" include (:system-flag t) nil [124 143])
+            ("map" include (:system-flag t) nil [144 158])
+            ("dirent.h" include (:system-flag t) nil [159 178])
+            ("signal.h" include (:system-flag t) nil [179 198])
+            ("errno.h" include (:system-flag t) nil [199 217])
+            ("mglobal.h" include (:system-flag t) nil [219 239])
+            ("mconfig.h" include (:system-flag t) nil [240 260])
+            ("mstringutil.h" include (:system-flag t) nil [261 285])
+            ("mmiscutil.h" include (:system-flag t) nil [286 308])
+            ("acceptor.h" include (:system-flag t) nil [309 330])
+            ("connection.h" include (:system-flag t) nil [331 354])
+            ("package.h" include (:system-flag t) nil [355 375])
+            ("reactor.h" include (:system-flag t) nil [376 396])
+            ("mtimer.h" include (:system-flag t) nil [397 416])
+            ("proclockable.h" include (:system-flag t) nil [417 442])
+            ("csvfile.h" include (:system-flag t) nil [443 463])
+            ("geocodingdconfiger.h" include nil nil [465 496])
+            ("searcher.h" include nil nil [497 518])
+            ("searchinfo.h" include nil nil [519 542])
+            ("poiinfo.h" include nil nil [543 563])
+            ("coordinate.h" include nil nil [564 587])
+            ("GEOCODING_D_BUF_LEN" variable (:constant-flag t) nil [597 616])
+            ("GEOCODING_D_CONNECTION_SIZE" variable (:constant-flag t) nil [631 658])
+            ("GEOCODING_D_RECV_STATUS_INIT" variable (:constant-flag t) nil [673 701])
+            ("GEOCODING_D_RECV_STATUS_RECVING" variable (:constant-flag t) nil [712 743])
+            ("GEOCODING_D_SEND_STATUS_INIT" variable (:constant-flag t) nil [754 782])
+            ("GEOCODING_D_SEND_STATUS_SENDING" variable (:constant-flag t) nil [793 824])
+            ("GEOCODING_D_PROC_STATUS_SEARCHING" variable (:constant-flag t) nil [835 868])
+            ("GEOCODING_D_MAX_ONE_ACCEPT" variable (:constant-flag t) nil [880 906])
+            ("GEOCODING_D_COUT_PRECISION" variable (:constant-flag t) nil [921 947])
+            ("GEOCODINGD_VERSION_STRING" variable (:constant-flag t) nil [1056 1081])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [1118 1138])
+            ("RecvedInfo" type
+               (:members 
+                  ( ("_city" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1161 1174])
+                    ("_name" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1176 1189])
+                    ("_addr" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1191 1204])
+                    ("_search_info" variable (:type ("SearchInfo" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1207 1231])
+                    ("_len" variable (:type ("uint32_t" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1233 1247])
+                    ("_cost_time" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1249 1267])
+                    ("_status" variable (:type "int") (reparse-symbol classsubparts) [1269 1281])
+                    ("_start_time" variable (:type ("time_t" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1283 1302])
+                    ("_last_heart_beat_time" variable (:type ("time_t" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1304 1333])
+                    ("_conn" variable
+                       (:pointer 1
+                        :type ("Connection" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [1335 1353]))                  
+                :type "struct")
+                nil [1140 1356])
+            ("_logger" variable (:type ("Logger" type (:type "class") nil nil)) nil [1358 1409])
+            ("_done_list_lock" variable (:type ("ProcLockable" type (:type "class") nil nil)) nil [1411 1457])
+            ("_task_list_lock" variable (:type ("ProcLockable" type (:type "class") nil nil)) nil [1411 1457])
+            ("_task_list" variable (:type ("list" type
+                 (:template-specifier 
+                    ( ("RecvedInfo" type (:pointer 1) nil nil))                    
+                  :type "class")
+                  nil nil)) nil [1459 1489])
+            ("_done_list" variable (:type ("list" type
+                 (:template-specifier 
+                    ( ("RecvedInfo" type (:pointer 1) nil nil))                    
+                  :type "class")
+                  nil nil)) nil [1490 1520])
+            ("clean" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("reactor" variable
+                       (:pointer 1
+                        :type ("Reactor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1533 1550])
+                    ("connection" variable
+                       (:pointer 1
+                        :type ("Connection" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1551 1574])
+                    ("recved_map" variable
+                       (:reference 1
+                        :type ("map" type
+                             (:template-specifier 
+                                ( ("Connection" type (:pointer 1) nil nil)
+                                  ("RecvedInfo" type (:pointer 1) nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [1575 1619]))                  
+                :type "void")
+                nil [1522 1620])
+            ("timer_poll" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("reactor" variable
+                       (:pointer 1
+                        :type ("Reactor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1637 1654])
+                    ("recved_map" variable
+                       (:reference 1
+                        :type ("map" type
+                             (:template-specifier 
+                                ( ("Connection" type (:pointer 1) nil nil)
+                                  ("RecvedInfo" type (:pointer 1) nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [1655 1699])
+                    ("time_out" variable (:type "int") (reparse-symbol arg-sub-list) [1700 1713])
+                    ("keep_alive" variable (:type "bool") (reparse-symbol arg-sub-list) [1714 1730])
+                    ("heart_beat_interval" variable (:type "int") (reparse-symbol arg-sub-list) [1731 1755]))                  
+                :type "void")
+                nil [1621 1756])
+            ("run" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("arg" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [1767 1777]))                  
+                :type "void")
+                nil [1757 1778])
+            ("main" function
+               (:arguments 
+                  ( ("argc" variable (:type "int") (reparse-symbol arg-sub-list) [1792 1801])
+                    ("argv" variable
+                       (:pointer 1
+                        :dereference 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [1802 1821]))                  
+                :type "int")
+                nil [1783 17007])
+            ("clean" function
+               (:arguments 
+                  ( ("reactor" variable
+                       (:pointer 1
+                        :type ("Reactor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [17020 17037])
+                    ("connection" variable
+                       (:pointer 1
+                        :type ("Connection" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [17038 17061])
+                    ("recved_map" variable
+                       (:reference 1
+                        :type ("map" type
+                             (:template-specifier 
+                                ( ("Connection" type (:pointer 1) nil nil)
+                                  ("RecvedInfo" type (:pointer 1) nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [17062 17106]))                  
+                :type "void")
+                nil [17009 17360])
+            ("timer_poll" function
+               (:arguments 
+                  ( ("reactor" variable
+                       (:pointer 1
+                        :type ("Reactor" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [17638 17655])
+                    ("recved_map" variable
+                       (:reference 1
+                        :type ("map" type
+                             (:template-specifier 
+                                ( ("Connection" type (:pointer 1) nil nil)
+                                  ("RecvedInfo" type (:pointer 1) nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [17656 17700])
+                    ("time_out" variable (:type "int") (reparse-symbol arg-sub-list) [17701 17714])
+                    ("keep_alive" variable (:type "bool") (reparse-symbol arg-sub-list) [17715 17731])
+                    ("heart_beat_interval" variable (:type "int") (reparse-symbol arg-sub-list) [17732 17756]))                  
+                :type "void")
+                nil [17622 18669])
+            ("run" function
+               (:pointer 1
+                :arguments 
+                  ( ("arg" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [18759 18769]))                  
+                :type "void")
+                nil [18749 19902]))          
+    :file "geocodingd.cpp"
+    :pointmax 19903
+    :fsize 20452
+    :lastmodtime '(20895 10821)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("GEOCODING_D_SEND_STATUS_INIT" . ((number "2" 783 . 784)))
+          ("GEOCODING_D_RECV_STATUS_RECVING" . ((number "1" 744 . 745)))
+          ("GEOCODING_D_PROC_STATUS_SEARCHING" . ((number "4" 869 . 870)))
+          ("GEOCODING_D_CONNECTION_SIZE" . ((number "1024" 659 . 663)))
+          ("GEOCODINGD_VERSION_STRING" . ((string "\"Version: Geocodingd 2.3.1\"" 1082 . 1109)))
+          ("GEOCODING_D_BUF_LEN" . ((number "10240" 617 . 622)))
+          ("GEOCODING_D_RECV_STATUS_INIT" . ((number "0" 702 . 703)))
+          ("GEOCODING_D_COUT_PRECISION" . ((number "6" 948 . 949)))
+          ("GEOCODING_D_SEND_STATUS_SENDING" . ((number "3" 825 . 826)))
+          ("GEOCODING_D_MAX_ONE_ACCEPT" . ((number "1024" 907 . 911)))
+          )
+
+    )
+   )
+  :file "!home!qin!backup!dsktop!geocoding_about!Geocoding_C++!trunk!geocodingd!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

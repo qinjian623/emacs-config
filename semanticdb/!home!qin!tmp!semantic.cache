@@ -1,0 +1,96 @@
+;; Object tmp/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "tmp/"
+  :tables (list 
+   (semanticdb-table "threadt.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("pthread.h" include (:system-flag t) nil [1 21])
+            ("list" include (:system-flag t) nil [22 37])
+            ("unistd.h" include (:system-flag t) nil [38 57])
+            ("iostream" include (:system-flag t) nil [58 77])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [78 98])
+            ("_mutex" variable (:type ("pthread_mutex_t" type (:type "class") nil nil)) nil [99 122])
+            ("spinlock" variable (:type ("pthread_spinlock_t" type (:type "class") nil nil)) nil [123 151])
+            ("t" variable (:type ("timespec" type
+                 (:prototype t
+                  :type "struct")
+                  nil nil)) nil [152 170])
+            ("rem" variable (:type ("timespec" type
+                 (:prototype t
+                  :type "struct")
+                  nil nil)) nil [171 191])
+            ("_task_list" variable (:type ("list" type
+                 (:template-specifier 
+                    ( ("int" type (:pointer 1) nil nil))                    
+                  :type "class")
+                  nil nil)) nil [192 215])
+            ("run" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [228 234]))                  
+                :type "void")
+                nil [217 235])
+            ("main" function (:type "int") nil [236 517])
+            ("run" function
+               (:pointer 1
+                :arguments 
+                  ( ("args" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [530 542]))                  
+                :type "void")
+                nil [520 1947]))          
+    :file "threadt.cpp"
+    :pointmax 1948
+    :fsize 1947
+    :lastmodtime '(20894 49204)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "t.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("time.h" include (:system-flag t) nil [1 18])
+            ("linux/acct.h" include (:system-flag t) nil [19 42])
+            ("iostream" include (:system-flag t) nil [43 62])
+            ("unistd.h" include (:system-flag t) nil [63 82])
+            ("t" variable (:type ("timespec" type
+                 (:prototype t
+                  :type "struct")
+                  nil nil)) nil [83 101])
+            ("rem" variable (:type ("timespec" type
+                 (:prototype t
+                  :type "struct")
+                  nil nil)) nil [102 122])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [123 143])
+            ("main" function
+               (:arguments 
+                  ( ("argc" variable (:type "int") (reparse-symbol arg-sub-list) [154 163])
+                    ("argv" variable
+                       (:pointer 1
+                        :dereference 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [164 177]))                  
+                :type "int")
+                nil [145 482]))          
+    :file "t.cpp"
+    :pointmax 461
+    :fsize 483
+    :lastmodtime '(20892 11729)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!qin!tmp!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )
