@@ -90,9 +90,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (defun os-settings ()
   (defun linux-settings ()
     (progn
-      (setp org-publish-base-dir "/home/qin/Documents/git/qinjian623.github.com/_org/_posts")
-      (setp org-publish-publishing-dir "/home/qin/Documents/git/qinjian623.github.com/_posts")
-      (setp org-todo-dir "~/Dropbox/TODO")
+      (setq org-publish-base-dir "/home/qin/Documents/git/qinjian623.github.com/_org/_posts")
+      (setq org-publish-publishing-dir "/home/qin/Documents/git/qinjian623.github.com/_posts")
+      (setq org-agenda-files (list "~/Dropbox/TODO"))
       (defun toggle-fullscreen ()
         "Toggle full screen"
         (interactive)
@@ -103,12 +103,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (progn
       (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
       (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
-      (setq org-todo-dir "F:\\Dropbox\\TODO")))
+      (setq org-agenda-files "F:\\Dropbox\\TODO")))
   (defun mac-os-settings ()
     (progn
       (setq org-publish-base-dir "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts")
       (setq org-publish-publishing-dir "/Users/qin/Documents/git/qinjian623.github.com/_posts")
-      (setq org-todo-dir "~/Dropbox/TODO")
+      (setq org-agenda-dir "~/Dropbox/TODO")
       (setq mac-option-key-is-meta t)
       (setq display-battery-mode t)
       (defun toggle-fullscreen ()
