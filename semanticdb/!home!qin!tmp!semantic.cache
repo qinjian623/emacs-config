@@ -50,8 +50,8 @@
                 nil [520 1947]))          
     :file "threadt.cpp"
     :pointmax 1948
-    :fsize 1947
-    :lastmodtime '(20894 49204)
+    :fsize 1921
+    :lastmodtime '(20894 49875)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "t.cpp"
@@ -87,6 +87,37 @@
     :pointmax 461
     :fsize 483
     :lastmodtime '(20892 11729)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "bsearch.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("stdio.h" include (:system-flag t) nil [1 19])
+            ("a" variable
+               (:dereference 1
+                :type "int")
+                nil [22 47])
+            ("bsearch" function
+               (:arguments 
+                  ( ("k" variable (:type "char") (reparse-symbol arg-sub-list) [60 67])
+                    ("s" variable (:type "int") (reparse-symbol arg-sub-list) [68 74])
+                    ("e" variable (:type "int") (reparse-symbol arg-sub-list) [75 81]))                  
+                :type "int")
+                nil [48 269])
+            ("main" function
+               (:arguments 
+                  ( ("argc" variable (:type "int") (reparse-symbol arg-sub-list) [281 290])
+                    ("argv" variable
+                       (:pointer 1
+                        :dereference 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [291 304]))                  
+                :type "int")
+                nil [272 458]))          
+    :file "bsearch.cpp"
+    :pointmax 460
+    :fsize 459
+    :lastmodtime '(20912 15581)
     :unmatched-syntax 'nil
     )
    )

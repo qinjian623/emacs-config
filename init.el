@@ -462,6 +462,13 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (local-set-key (kbd "RET") 'newline-and-indent)
              (linum-mode t)
              (semantic-mode t)))
+(add-hook 'c++-mode-hook
+          '(lambda ()
+             (c-set-style "K&R")
+             ;;(c-toggle-auto-state)
+             (setq tab-width 8)
+             (setq indent-tabs-mode t)
+             (setq c-basic-offset 8)))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
 (message "c-mode-hook-setting")
 ;;(local-set-key (kbd "C-m") 'set-mark-command)
