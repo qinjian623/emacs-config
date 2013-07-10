@@ -103,12 +103,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (progn
       (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
       (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
-      (setq org-agenda-files "F:\\Dropbox\\TODO")))
+      (setq org-agenda-files (list "F:\\Dropbox\\TODO"))))
   (defun mac-os-settings ()
     (progn
       (setq org-publish-base-dir "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts")
       (setq org-publish-publishing-dir "/Users/qin/Documents/git/qinjian623.github.com/_posts")
-      (setq org-agenda-dir "~/Dropbox/TODO")
+      (setq org-agenda-files (list "~/Dropbox/TODO"))
       (setq mac-option-key-is-meta t)
       (setq display-battery-mode t)
       (defun toggle-fullscreen ()
