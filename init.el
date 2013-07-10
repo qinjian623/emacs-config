@@ -371,12 +371,11 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (auto-complete-clang-settings)
              (require 'session)
              (session-initialize)
-             (load "desktop")
-             (desktop-load-default)
-             (desktop-read)
              (ac-flyspell-workaround)
              (emms-settings)
              (c-settings)
+             (load "desktop")
+             (desktop-load-default)
              (message "ALL INIT FINISHED")))
 
 ;;LISP settings
@@ -385,8 +384,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
                     (rainbow-delimiters-mode t)
                     (hl-line-mode -1))))
 (message "emacs-lisp-mode-hook-setting")
-;;Session settings
-(desktop-save-mode t)
+;;Session setting
+
 
 ;;(org-babel-do-load-languages
 ;; 'org-babel-load-languages

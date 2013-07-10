@@ -6,6 +6,7 @@ elpa/archives/
 .session
 ./places
 backups/
+emms/cache
 .smex-items
 tmp/
 url/
