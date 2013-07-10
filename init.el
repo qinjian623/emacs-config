@@ -178,6 +178,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun global-key-setting ()
   (progn
+    (global-set-key (kbd "<f11>") 'toggle-fullscreen)
     (global-set-key [C-tab] 'other-window)
     (global-set-key (kbd "RET") 'newline-and-indent)
     (global-set-key "\C-j" 'goto-line)
