@@ -50,8 +50,8 @@
                 nil [520 1947]))          
     :file "threadt.cpp"
     :pointmax 1948
-    :fsize 1947
-    :lastmodtime '(20894 49204)
+    :fsize 1921
+    :lastmodtime '(20894 49875)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "t.cpp"
@@ -87,6 +87,84 @@
     :pointmax 461
     :fsize 483
     :lastmodtime '(20892 11729)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "bsearch.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("stdio.h" include (:system-flag t) nil [1 19])
+            ("a" variable
+               (:dereference 1
+                :type "int")
+                nil [22 48])
+            ("bsearch" function
+               (:arguments 
+                  ( ("k" variable (:type "char") (reparse-symbol arg-sub-list) [61 68])
+                    ("s" variable (:type "int") (reparse-symbol arg-sub-list) [69 75])
+                    ("e" variable (:type "int") (reparse-symbol arg-sub-list) [76 82]))                  
+                :type "int")
+                nil [49 266])
+            ("main" function
+               (:arguments 
+                  ( ("argc" variable (:type "int") (reparse-symbol arg-sub-list) [278 287])
+                    ("argv" variable
+                       (:pointer 1
+                        :dereference 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [288 301]))                  
+                :type "int")
+                nil [269 634]))          
+    :file "bsearch.cpp"
+    :pointmax 637
+    :fsize 635
+    :lastmodtime '(20912 22641)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "map.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("map" include (:system-flag t) nil [1 15])
+            ("iostream" include (:system-flag t) nil [16 35])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [37 57])
+            ("test" type
+               (:members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [71 78])
+                    ("t" variable (:type "int") (reparse-symbol classsubparts) [80 86])
+                    ("test" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("l" variable (:type "int") (reparse-symbol arg-sub-list) [93 99]))                          
+                        :type ("test" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [88 107]))                  
+                :type "class")
+                nil [58 110])
+            ("main" function
+               (:arguments 
+                  ( ("argc" variable (:type "int") (reparse-symbol arg-sub-list) [120 129])
+                    ("argv" variable
+                       (:pointer 1
+                        :dereference 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [130 143]))                  
+                :type "int")
+                nil [111 359]))          
+    :file "map.cpp"
+    :pointmax 372
+    :fsize 371
+    :lastmodtime '(20916 7760)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "t.scm"
+    :major-mode 'scheme-mode
+    :tags 
+        '( ("rember" variable (:default-value ((18 . 177))) nil [1 178]))          
+    :file "t.scm"
+    :pointmax 179
+    :fsize 178
+    :lastmodtime '(20944 60442)
     :unmatched-syntax 'nil
     )
    )

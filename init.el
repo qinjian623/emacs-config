@@ -103,12 +103,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (progn
       (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
       (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
-      (setq org-agenda-files (list "F:\\Dropbox\\TODO"))))
+      (setq org-agenda-files "F:\\Dropbox\\TODO")))
   (defun mac-os-settings ()
     (progn
       (setq org-publish-base-dir "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts")
       (setq org-publish-publishing-dir "/Users/qin/Documents/git/qinjian623.github.com/_posts")
-      (setq org-agenda-files (list "~/Dropbox/TODO"))
+      (setq org-agenda-dir "~/Dropbox/TODO")
       (setq mac-option-key-is-meta t)
       (setq display-battery-mode t)
       (defun toggle-fullscreen ()
@@ -371,12 +371,11 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (auto-complete-clang-settings)
              (require 'session)
              (session-initialize)
-             (load "desktop")
-             (desktop-load-default)
-             (desktop-read)
              (ac-flyspell-workaround)
              (emms-settings)
              (c-settings)
+             (load "desktop")
+             (desktop-load-default)
              (message "ALL INIT FINISHED")))
 
 ;;LISP settings
@@ -385,8 +384,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
                     (rainbow-delimiters-mode t)
                     (hl-line-mode -1))))
 (message "emacs-lisp-mode-hook-setting")
-;;Session settings
-(desktop-save-mode t)
+;;Session setting
+
 
 ;;(org-babel-do-load-languages
 ;; 'org-babel-load-languages
@@ -462,6 +461,20 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (local-set-key (kbd "RET") 'newline-and-indent)
              (linum-mode t)
              (semantic-mode t)))
+(add-hook 'c-mode-hook
+          '(lambda ()
+             (c-set-style "K&R")
+             ;;(c-toggle-auto-state)
+             (setq tab-width 8)
+             (setq indent-tabs-mode t)
+             (setq c-basic-offset 8)))
+(add-hook 'c++-mode-hook
+          '(lambda ()
+             (c-set-style "K&R")
+             ;;(c-toggle-auto-state)
+             (setq tab-width 8)
+             (setq indent-tabs-mode t)
+             (setq c-basic-offset 8)))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
 (message "c-mode-hook-setting")
 ;;(local-set-key (kbd "C-m") 'set-mark-command)
