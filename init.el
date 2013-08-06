@@ -60,7 +60,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
         (format "%s%s" font-name font-size)
       (format "%s %s" font-name font-size)))
   (qiang-set-font
-   '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=15"
+   '("Courier 10 Pitch" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=17"
    '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
   )
 
@@ -342,6 +342,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (defun global-setting ()
   (progn (setq-default ispell-program-name "aspell")
          (ac-flyspell-workaround)
+         (ispell-change-dictionary "american" t)
          (global-key-setting)
          (global-views-setting)
          (setq ring-bell-function (lambda ()(message "Bing!")))))
