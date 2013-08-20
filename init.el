@@ -60,7 +60,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
         (format "%s%s" font-name font-size)
       (format "%s %s" font-name font-size)))
   (qiang-set-font
-   '("Courier 10 Pitch" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=17"
+   '("Courier 10 Pitch" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=18"
    '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
   )
 
@@ -90,8 +90,21 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (defun os-settings ()
   (defun linux-settings ()
     (progn
-      (setq org-publish-base-dir "/home/qin/Documents/git/qinjian623.github.com/_org/_posts")
-      (setq org-publish-publishing-dir "/home/qin/Documents/git/qinjian623.github.com/_posts")
+      (setq org-publish-project-alist
+          '(("blog"
+             :base-directory "/home/qin/文档/git/qinjian623.github.com/_orgs"
+             :base-extension "org"
+             :publishing-directory "/home/qin/文档/git/qinjian623.github.com/_posts"
+             :publishing-function org-html-publish-to-html
+             :recursive t
+             :htmlized-source t
+             :html-extension "html"
+             :with-author nil
+             :with-toc nil
+             :section-number nil
+             :author-info nil
+             :body-only t
+             :table-of-contents nil)))
       (setq org-agenda-files (list "~/Dropbox/TODO"))
       (defun toggle-fullscreen ()
         "Toggle full screen"
@@ -101,13 +114,39 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
          (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))))
   (defun windows-nt-settings ()
     (progn
-      (setq org-publish-base-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_org\\_posts")
-      (setq org-publish-publishing-dir "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts")
+      (setq org-publish-project-alist
+          '(("blog"
+             :base-directory "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_orgs"
+             :base-extension "org"
+             :publishing-directory "C:\\Documents and Settings\\qinjian\\My Documents\\GitHub\\qinjian623.github.com\\_posts"
+             :publishing-function org-html-publish-to-html
+             :recursive t
+             :htmlized-source t
+             :html-extension "html"
+             :with-author nil
+             :with-toc nil
+             :section-number nil
+             :author-info nil
+             :body-only t
+             :table-of-contents nil)))
       (setq org-agenda-files "F:\\Dropbox\\TODO")))
   (defun mac-os-settings ()
     (progn
-      (setq org-publish-base-dir "/Users/qin/Documents/git/qinjian623.github.com/_org/_posts")
-      (setq org-publish-publishing-dir "/Users/qin/Documents/git/qinjian623.github.com/_posts")
+      (setq org-publish-project-alist
+          '(("blog"
+             :base-directory "/Users/qin/Documents/git/qinjian623.github.com/_orgs"
+             :base-extension "org"
+             :publishing-directory "/Users/qin/Documents/git/qinjian623.github.com/_posts"
+             :publishing-function org-html-publish-to-html
+             :recursive t
+             :htmlized-source t
+             :html-extension "html"
+             :with-author nil
+             :with-toc nil
+             :section-number nil
+             :author-info nil
+             :body-only t
+             :table-of-contents nil)))
       (setq org-agenda-dir "~/Dropbox/TODO")
       (setq mac-option-key-is-meta t)
       (setq display-battery-mode t)
@@ -132,19 +171,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun org-mode-settings ()
   (progn
-    (setq org-log-done 'time)
-    (setq org-publish-project-alist
-          '(("blog"
-             :base-directory org-publish-base-dir
-             :base-extension "org"
-             :publishing-directory org-publish-publishing-dir
-             :recursive t
-             :htmlized-source t
-             :html-extension "html"
-             :author-info nil
-             :body-only t
-             :table-of-contents nil)))
-    (setq org-agenda-files (list org-todo-dir))))
+    (setq org-log-done 'time)))
 
 (defun auto-complete-settings ()
   (require 'auto-complete-config)
@@ -176,6 +203,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (message "global-misc-settings")
 (global-misc-settings)
 
+
 (defun global-key-setting ()
   (progn
     (global-set-key (kbd "<f11>") 'toggle-fullscreen)
@@ -183,6 +211,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (global-set-key (kbd "RET") 'newline-and-indent)
     (global-set-key "\C-j" 'goto-line)
     (global-set-key "\C-z" 'undo)
+    (global-set-key (kbd "<f2>") 'find-file)
+    (global-set-key (kbd "<f9>") 'smart-compile)
     (global-set-key (kbd "<f5>") 'nav-toggle)))
 
 (defun global-views-setting ()
@@ -200,7 +230,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (display-time-mode t)
     (global-linum-mode 1)
     (tool-bar-mode -1)
-    (menu-bar-mode 1)
+    (menu-bar-mode -1)
     (setq frame-title-format "%n%F/%b")))
 
 (defun calendar-setting ()
@@ -256,6 +286,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (add-hook 'write-file-hooks 'time-stamp)))
 (message "time-stamp-setting")
 (time-stamp-setting)
+
 
 ;;add hooks
 (defun add-common-mode-hooks (l)
@@ -378,6 +409,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (c-settings)
              (load "desktop")
              (desktop-load-default)
+             (org-mode-settings)
              (message "ALL INIT FINISHED")))
 
 ;;LISP settings
