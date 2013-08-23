@@ -437,13 +437,13 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (org-mode-settings)
              (message "ALL INIT FINISHED")))
 
-;;LISP settings
+;; LISP settings
 (add-hook 'emacs-lisp-mode-hook
           '(lambda () (progn
                     (rainbow-delimiters-mode t)
                     (hl-line-mode -1))))
 (message "emacs-lisp-mode-hook-setting")
-;;Session setting
+;; Session setting
 
 
 ;;(org-babel-do-load-languages
@@ -458,13 +458,23 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun org-latex-setting()
   (require 'org-latex)
-  (setq org-export-latex-listings 'minted)
-  ;;FIXME comment out this, need to find the reason 
-  ;;(add-to-list 'org-export-latex-packages-alist '("" "minted"))
-  (setq org-export-latex-minted-options
+  (require 'ox-latex)
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (setq org-latex-listings 'minted)
+  (setq org-latex-minted-options
 	'(("frame" "lines")
 	  ("fontsize" "\\scriptsize")
 	  ("linenos" "true")))
+  
+  ;;For org-mode version < 8
+  ;;(setq org-export-latex-listings 'minted)  
+  ;;(add-to-list 'org-export-latex-packages-alist '("" "minted"))
+  ;;(setq org-export-latex-minted-options
+  ;;	'(("frame" "lines")
+  ;;("fontsize" "\\scriptsize")
+  ;;	  ("linenos" "true")))
+  
+
   (setq org-export-latex-hyperref-format "\\ref{%s}")
   (setq org-latex-preview-ltxpng-directory "~/"))
 (message "org-latex-setting")
