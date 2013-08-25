@@ -60,10 +60,41 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
         (format "%s%s" font-name font-size)
       (format "%s %s" font-name font-size)))
   (qiang-set-font
-   '("Courier 10 Pitch" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=18"
-   '("Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
-  )
+   '("Courier New" "Courier 10 Pitch" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" ) ":pixelsize=18"
+   '("SimSun" "Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体")))
 
+(defun all-buffer-count ()
+  "全buffer的字数统计,使用count的包装"
+  (interactive)
+  (let ((beg (point-min))
+        (end (point-max)))
+    (count beg end)))
+(defun count (beg end)
+  "用于统计字符数，包括中文（含中文标点）、英文字母、空格、段落和其他字符（数字等等）。
+与word当中记数的方式略有不同，不会把连续的数字、英文标点只统计成一个，也就是此函数记录的是实际的字符数目。
+这与word当中统计的字符数是一样的。" 
+  (interactive "r")
+  (message "begin:%d\tend:%d" beg end)
+  (save-excursion
+    (let ((cn 0)
+          (en 0)
+          (spc 0)
+          (par 1)
+          (others 0)
+          char)
+      (goto-char beg)
+      (while (< (point) end)
+        (setq char (char-after))
+        (cond ((eq ?\s char) (setq spc (1+ spc)))
+              ((eq ?\n char) (setq par (1+ par)))
+              ((< 127 char) (setq cn (1+ cn)))
+              ((or
+                (and (<= ?a char) (<= char ?z))
+                (and (<= ?A char) (<= char ?Z))
+                ) (setq en (1+ en)))
+              (t (setq others (1+ others))))
+        (forward-char 1))
+      (message "共有%d个字，%d个字母，%d个空格，%d个其他字符，%d个段落" cn en spc others par))))
 ;;; X-window settings
 (defun x-window-settings ()
   (defun window-system-settings ()
