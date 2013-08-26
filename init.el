@@ -61,7 +61,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
       (format "%s %s" font-name font-size)))
   (qiang-set-font
    '("Courier New" "Courier 10 Pitch" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" ) ":pixelsize=18"
-   '("SimSun" "Hei"  "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体")))
+   '( "文泉驿等宽微米黑" "SimSun" "Hei" "Microsoft Yahei"   "黑体" "新宋体" "宋体")))
 
 (defun all-buffer-count ()
   "全buffer的字数统计,使用count的包装"
@@ -445,7 +445,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
              (require 'yasnippet)
              ;;(require 'org)
-	     ;;(org-latex-setting)
+	     
              (message "lambda2")
              (add-to-list 'package-archives
                           '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -466,6 +466,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (load "desktop")
              (desktop-load-default)
              (org-mode-settings)
+             (org-latex-setting)
              (message "ALL INIT FINISHED")))
 
 ;; LISP settings
@@ -495,7 +496,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (setq org-latex-minted-options
 	'(("frame" "lines")
 	  ("fontsize" "\\scriptsize")
-	  ("linenos" "true")))
+	  ("linenos" "true")
+          ("bgcolor" "bg")))
   
   ;;For org-mode version < 8
   ;;(setq org-export-latex-listings 'minted)  
@@ -542,10 +544,10 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (require 'srecode)
     (global-srecode-minor-mode 1)))
 
-(setq org-latex-pdf-process (list "xelatex -output-directory %o %f"
+(setq org-latex-pdf-process (list "xelatex  -shell-escape -output-directory %o %f"
                                   ;;"bibtex %b"
                                   ;;"xelatex -interaction nonstopmode -output-directory %o %f"
-                                  "xelatex -output-directory %o %f"))
+                                  "xelatex  -shell-escape -output-directory %o %f"))
 (message "c-setting")
 
 (defun my-cedet-hook ()
