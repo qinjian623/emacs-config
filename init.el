@@ -230,7 +230,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (setq default-buffer-file-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
   (setq version-control 'never)
-  (setq make-backup-files nil))
+  (setq make-backup-files nil)
+  )
 (message "global-misc-settings")
 (global-misc-settings)
 
@@ -467,7 +468,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (desktop-load-default)
              (org-mode-settings)
              (org-latex-setting)
-             (message "ALL INIT FINISHED")))
+             (message "ALL INIT FINISHED")
+             (global-undo-tree-mode)))
 
 ;; LISP settings
 (add-hook 'emacs-lisp-mode-hook
@@ -506,8 +508,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   ;;	'(("frame" "lines")
   ;;("fontsize" "\\scriptsize")
   ;;	  ("linenos" "true")))
-  
-
   (setq org-export-latex-hyperref-format "\\ref{%s}")
   (setq org-latex-preview-ltxpng-directory "~/"))
 (message "org-latex-setting")
@@ -516,8 +516,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (require 'switch-window)
   (setq switch-window-shortcut-style 'qwerty))
 (message "switch-window-setting")
-
-
 
 ;; Emms Music Settings
 (defun emms-settings ()
