@@ -202,6 +202,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 (defun org-mode-settings ()
   (progn
+    ;; FIX from http://lists.gnu.org/archive/html/emacs-orgmode/2013-04/msg00969.html 
+    (setq org-beamer-outline-frame-options "")
     (setq org-log-done 'time)))
 
 (defun auto-complete-settings ()
@@ -561,6 +563,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (local-set-key (kbd "RET") 'newline-and-indent)
              (linum-mode t)
              (semantic-mode t)))
+
 (add-hook 'c-mode-hook
           '(lambda ()
              (c-set-style "K&R")
@@ -577,5 +580,12 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
              (setq c-basic-offset 8)))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
 (message "c-mode-hook-setting")
+
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)                 ; optional
+(setq jedi:get-in-function-call-delay 500)
+(message "python-mode-hook-setting")
+
 ;;(local-set-key (kbd "C-m") 'set-mark-command)
 
