@@ -69,6 +69,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (let ((beg (point-min))
         (end (point-max)))
     (count beg end)))
+
 (defun count (beg end)
   "用于统计字符数，包括中文（含中文标点）、英文字母、空格、段落和其他字符（数字等等）。
 与word当中记数的方式略有不同，不会把连续的数字、英文标点只统计成一个，也就是此函数记录的是实际的字符数目。
@@ -237,9 +238,22 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (message "global-misc-settings")
 (global-misc-settings)
 
+(defun easypg-settings ()
+  ;;; easypg，emacs 自带
+  (require 'epa-file)
+  (epa-file-enable)
+  ;; 总是使用对称加密
+  (setq epa-file-encrypt-to nil)
+  ;; 允许缓存密码，否则编辑时每次保存都要输入密码
+  (setq epa-file-cache-passphrase-for-symmetric-encryption t)
+  ;; 允许自动保存
+  (setq epa-file-inhibit-auto-save nil))
+(easypg-settings)
 
 (defun global-key-setting ()
   (progn
+    (global-set-key (kbd "C-.") 'flyspell-auto-correct-word)
+    (global-set-key [C-.] 'flyspell-auto-correct-word)
     (global-set-key (kbd "<f11>") 'toggle-fullscreen)
     (global-set-key [C-tab] 'other-window)
     (global-set-key (kbd "RET") 'newline-and-indent)
@@ -361,14 +375,15 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
                          emacs-startup-hook
                          org-mode-hook))
 
-(defvar my-packages '())
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (dolist (p my-packages)
-              (when (not (package-installed-p p))
-                (package-install p)))))
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (defvar my-packages '())                          ;;
+;;                                                   ;;
+;; (add-hook 'emacs-startup-hook                     ;;
+;;           (lambda ()                                  ;;
+;;             (dolist (p my-packages)               ;;
+;;               (when (not (package-installed-p p)) ;;
+;;                 (package-install p)))))           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;Clojure settings
 (add-hook 'nrepl-interaction-mode-hook
@@ -386,18 +401,38 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))))
 (message "ac-nrepl settings")
 
-;;This is for the auto-complete-clang
+
 ;;TODO 
-(defun auto-complete-clang-settings ()
-  (progn
-    (add-to-list 'load-path "~/.emacs.d/libs")
-    (require 'auto-complete-clang)
-    (setq ac-clang-auto-save t)
-    (setq ac-auto-start t)
-    (setq ac-quick-help-delay 0.5)
+(defun auto-complete-clang-settings ()                       
+  (progn                                                    
+    (add-to-list 'load-path "~/.emacs.d/libs")              
+    (require 'auto-complete-clang)                          
+    (setq ac-clang-auto-save t)                             
+    (setq ac-auto-start t)                                  
+    (setq ac-quick-help-delay 0.5)                          
     (define-key ac-mode-map  [(control tab)] 'auto-complete)
-    (my-ac-config)))
+    (my-ac-config)))                                        
 (message "auto-complete settings")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (defun auto-complete-clang-async-settings ()                               ;;
+;;   (progn                                                                   ;;
+;;     (add-to-list 'load-path "~/.emacs.d/libs")                             ;;
+;;     (require 'auto-complete-clang-async)                                   ;;
+;;     (setq ac-auto-start t)                                                 ;;
+;;     (defun ac-cc-mode-setup ()                                             ;;
+;;       (setq ac-clang-complete-executable "~/.emacs.d/libs/clang-complete") ;;
+;;       (setq ac-sources '(ac-source-clang-async))                           ;;
+;;       (ac-clang-launch-completion-process))                                ;;
+;;                                                                            ;;
+;;     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;           ;;
+;;     ;; (defun my-ac-config ()                                 ;;           ;;
+;;     ;;   (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)     ;;           ;;
+;;     ;;   (add-hook 'auto-complete-mode-hook 'ac-common-setup) ;;           ;;
+;;     ;;   (global-auto-complete-mode t))                       ;;           ;;
+;;     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;           ;;
+;;     (my-ac-config)))                                                       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (ac-set-trigger-key "TAB")  
 ;; (define-key ac-mode-map  [(control tab)] 'auto-complete)  
@@ -413,7 +448,15 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
  /usr/lib/gcc/i486-linux-gnu/4.4.5/include  
  /usr/lib/gcc/i486-linux-gnu/4.4.5/include-fixed  
  /usr/include/i486-linux-gnu  
- /usr/include  
+ /usr/include
+ /usr/include/c++/4.7
+ /usr/include/x86_64-linux-gnu/c++/4.7/.
+ /usr/include/c++/4.7/backward
+ /usr/lib/gcc/x86_64-linux-gnu/4.7/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed
+ /usr/include/x86_64-linux-gnu
+ /usr/include
 ")))  
   (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))  
   (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)  
@@ -439,16 +482,14 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (message "global-setting")
 
 (add-hook 'after-init-hook
+          ;; If setting function does not work properly, Just put it at the end. 
           `(lambda ()
              (message "lambda0")
              (setq starter-kit-dir
                    (file-name-directory (or "~/.emacs.d/init.el" (buffer-file-name))))
              (message "lambda1")
-             ;; load up the starter kit
              (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
              (require 'yasnippet)
-             ;;(require 'org)
-	     
              (message "lambda2")
              (add-to-list 'package-archives
                           '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -459,8 +500,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 	     (switch-window-setting)
              (global-setting)
              (ac-nrepl-settings)
-             ;; If setting function does not work properly, Just put it at the end. 
              (auto-complete-clang-settings)
+             ;;(auto-complete-clang-async-settings)
              (require 'session)
              (session-initialize)
              (ac-flyspell-workaround)
@@ -525,7 +566,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (require 'emms-setup)
     (emms-all)
     (emms-default-players)
-    (setq emms-source-file-default-directory "~/音乐/")))
+    (setq emms-source-file-default-directory "~/Music/")))
 (message "emms-setting")
 
 ;; C/C++ language settings
