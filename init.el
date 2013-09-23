@@ -124,9 +124,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (progn
       (setq org-publish-project-alist
           '(("blog"
-             :base-directory "/home/qin/文档/git/qinjian623.github.com/_orgs"
+             :base-directory "/home/qin/Documents/git/qinjian623.github.com/_orgs"
              :base-extension "org"
-             :publishing-directory "/home/qin/文档/git/qinjian623.github.com/_posts"
+             :publishing-directory "/home/qin/Documents/git/qinjian623.github.com/_posts"
              :publishing-function org-html-publish-to-html
              :recursive t
              :htmlized-source t
