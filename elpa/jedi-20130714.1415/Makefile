@@ -4,7 +4,7 @@ VIRTUALENV_SYSTEM_SITE_PACKAGES ?= true
 VIRTUALENV = \
 	VIRTUALENV_SYSTEM_SITE_PACKAGES=$(VIRTUALENV_SYSTEM_SITE_PACKAGES) \
 		virtualenv --python=$(PYTHON)
-PIP_INSTALL = $(ENV)/$(BINDIR)/pip install --use-mirrors
+PIP_INSTALL = /usr/local/bin/pip install --use-mirrors
 JEDI_DEV_URL = https://github.com/davidhalter/jedi/archive/dev.zip
 
 PYTHON ?= python
