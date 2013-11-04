@@ -258,7 +258,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (global-set-key [C-tab] 'other-window)
     (global-set-key (kbd "RET") 'newline-and-indent)
     (global-set-key "\C-j" 'goto-line)
-    (global-set-key "\C-z" 'undo)
+    (global-set-key "\C-z" 'undo-tree-undo)
     (global-set-key (kbd "<f2>") 'find-file)
     (global-set-key (kbd "<f9>") 'smart-compile)
     (global-set-key (kbd "<f5>") 'nav-toggle)))
