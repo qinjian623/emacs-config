@@ -19,7 +19,7 @@
 (package-initialize)
 
 (defvar starter-kit-packages
-  (list 'yasnippet-bundle)
+  (list 'yasnippet)
   "Libraries that should be installed by default.")
 
 (unless package-archive-contents

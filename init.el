@@ -20,7 +20,9 @@
 ;;(add-to-list 'package-archives
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (setq debug-on-error t)
-(defvar yas-snippet-dirs nil)
+
+(setq yas-snippet-dirs (list "~/.emacs.d/snippets"))
+
 (defun font-settings ()
   ;; 字体设置，来自emacser.com
   (defun qiang-set-font (english-fonts
@@ -622,11 +624,13 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
 (message "c-mode-hook-setting")
 
-
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)                 ; optional
-(setq jedi:get-in-function-call-delay 500)
+(package-initialize)
+(elpy-enable)
+;;(add-hook 'python-mode-hook 'jedi:setup)
+;;(setq jedi:complete-on-dot t)                 ; optional
+;;(setq jedi:get-in-function-call-delay 500)
 (message "python-mode-hook-setting")
+
 
 ;;(local-set-key (kbd "C-m") 'set-mark-command)
 
