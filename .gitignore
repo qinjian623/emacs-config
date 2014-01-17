@@ -13,3 +13,5 @@ url/
 ac-comphist.dat
 elpa/archives/
 session.*
+*#
+.#*
