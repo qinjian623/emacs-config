@@ -21,8 +21,14 @@
 ;;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (setq debug-on-error t)
 
-(setq yas-snippet-dirs (list "~/.emacs.d/snippets"))
-
+(setq yas-snippet-dirs
+      (list
+       "/home/qin/.emacs.d/elpa/yasnippet-20131231.758/snippets"
+       "~/.emacs.d/snippets"))
+;;
+;;
+;;        "~/.emacs.d/elpa/yasnippet-20131231.758/snippets/"
+;;        
 (defun font-settings ()
   ;; 字体设置，来自emacser.com
   (defun qiang-set-font (english-fonts
@@ -542,9 +548,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (setq org-latex-listings 'minted)
   (setq org-latex-minted-options
 	'(("frame" "lines")
+          ;;("bgcolor" "bg")
 	  ("fontsize" "\\scriptsize")
-	  ("linenos" "true")
-          ("bgcolor" "bg")))
+	  ("linenos" "true")))
   
   ;;For org-mode version < 8
   ;;(setq org-export-latex-listings 'minted)  

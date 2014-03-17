@@ -18,8 +18,9 @@
         ("marmalade"   . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
+
 (defvar starter-kit-packages
-  (list 'yasnippet)
+  nil
   "Libraries that should be installed by default.")
 
 (unless package-archive-contents
