@@ -18,7 +18,6 @@
         ("marmalade"   . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-
 (defvar starter-kit-packages
   nil
   "Libraries that should be installed by default.")
