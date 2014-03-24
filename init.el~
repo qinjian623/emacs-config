@@ -62,7 +62,7 @@
 ;;TODO 
 (defun auto-complete-clang-settings ()                       
   (progn                                                    
-    (add-to-list 'load-path "~/.emacs.d/libs")
+    (add-to-list 'load-path "~/.emacs.d/libs")              
     (require 'auto-complete-clang)                          
     (setq ac-clang-auto-save t)                             
     (setq ac-auto-start t)                                  
@@ -152,8 +152,7 @@
              (org-mode-settings)
              (org-latex-setting)
              (message "ALL INIT FINISHED")
-             (global-undo-tree-mode)
-             (personal-setting)))
+             (global-undo-tree-mode)))
 
 (setq starter-kit-packages
       (list
@@ -215,17 +214,13 @@
        'yasnippet
        'yasnippet
        'zen-and-art-theme))
-
-(defun personal-setting ()
-  (progn
-    (add-to-list 'load-path "~/.emacs.d/")
-    (require 'qj-os)
-    (require 'global-settings)
-    (system-var-settings)
-    (global-misc-settings)
-    (fonts-settings)
-    (easypg-settings)
-    (calendar-setting)
-    (time-stamp-setting)))
+(require qj-os)
+(system-var-settings)
+(global-misc-settings)
+(fonts-settings)
+(easypg-settings)
+(calendar-setting)
+(time-stamp-setting)
 
 (provide 'qj-init)
+

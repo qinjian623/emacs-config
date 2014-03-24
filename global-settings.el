@@ -65,9 +65,7 @@
 
 (defun global-views-settings ()
   (progn
-    (x-window-settings))
-  
-  )
+    (x-window-settings)))
 
 (defun global-misc-settings ()
   (progn
@@ -75,4 +73,6 @@
     (ac-flyspell-workaround)
     (ispell-change-dictionary "american" t)
     (setq ring-bell-function (lambda ()(message "Bing!")))))
+
+(provide 'global-settings)
 

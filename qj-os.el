@@ -3,7 +3,7 @@
     (if (equal system-type 'windows-nt)
         (windows-nt-settings))
     (if (equal system-type 'darwin)
-        (mac-os-settings))
+        (mac-settings))
     (if (equal system-type 'gnu/linux)
         (linux-settings))))
 
@@ -78,4 +78,4 @@
        nil 'fullscreen
        (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))))
 
-(provide qj-os)
+(provide 'qj-os)
