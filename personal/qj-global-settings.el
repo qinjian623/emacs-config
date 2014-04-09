@@ -16,8 +16,8 @@
 
 ;; Fucniont global-settings will invoke all global-XX-settings below
 (defun global-settings ()
-  (progn (global-key-setting)
-         (global-views-setting)))
+  (progn (global-key-settings)
+         (global-views-settings)))
 
 (defun global-key-settings ()
   (progn
@@ -74,5 +74,5 @@
     (ispell-change-dictionary "american" t)
     (setq ring-bell-function (lambda ()(message "Bing!")))))
 
-(provide 'global-settings)
+(provide 'qj-global-settings)
 

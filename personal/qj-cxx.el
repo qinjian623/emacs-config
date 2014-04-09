@@ -48,5 +48,7 @@
 (defun my-ac-cc-mode-setup ()  
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
 
-;; ac-source-gtags  
+;; ac-source-gtags
+
+(provide 'qj-cxx)
 

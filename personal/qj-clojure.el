@@ -1,4 +1,3 @@
-(require 'auto-complete-clang)
 (require 'ac-nrepl)
 
 (defun ac-nrepl-settings ()

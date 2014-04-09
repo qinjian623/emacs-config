@@ -151,5 +151,6 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq time-stamp-format "%:u %02m/%02d/%04y %02H:%02M:%02S")
     (add-hook 'write-file-hooks 'time-stamp)))
 
+(provide 'qj-misc)
 
 

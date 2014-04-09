@@ -40,4 +40,4 @@
 ;;)
 ;;)
 
-(provide qj-org)
+(provide 'qj-org)

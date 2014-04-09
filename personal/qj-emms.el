@@ -5,3 +5,5 @@
     (emms-all)
     (emms-default-players)
     (setq emms-source-file-default-directory "~/Music/")))
+
+(provide 'qj-emms)
