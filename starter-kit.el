@@ -94,7 +94,7 @@ to your configuration."
                                 (expand-file-name "src"
                                                   starter-kit-dir)))
 (require 'yasnippet)
-(yas/initialize)
+(yas-global-mode)
 
 (yas/load-directory (expand-file-name "snippets" starter-kit-dir))
 
