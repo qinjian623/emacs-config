@@ -39,9 +39,11 @@
   (defun window-system-settings ()
     (progn
       (scroll-bar-mode -1)
-      (font-settings)))
+      (fonts-settings)))
   (if window-system
-      (window-system-settings)))
+      (progn
+        (window-system-settings)
+        (nox-window-settings))))
 
 (defun nox-window-settings ()
   (progn

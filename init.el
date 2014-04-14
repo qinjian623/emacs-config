@@ -210,8 +210,8 @@
   (progn
     (add-to-list 'load-path "~/.emacs.d/personal/")
     (require 'qj-os)
-    (require 'qj-global-settings)
     (require 'qj-misc)
+    (require 'qj-global-settings)
     (require 'qj-clojure)
     (require 'qj-emms)
     (require 'qj-org)
@@ -221,8 +221,6 @@
     (c-settings)
     (emms-settings)
     (ac-nrepl-settings)
-    (if (window-system)
-        (fonts-settings))
     (switch-window-setting)
     (global-settings)
     (system-var-settings)
