@@ -28,11 +28,9 @@
 (defun mew-settings ()
   (autoload 'mew "mew" nil t)
   (autoload 'mew-send "mew" nil t)
-
   ;; Optional setup (Read Mail menu for Emacs 21):
   (if (boundp 'read-mail-command)
       (setq read-mail-command 'mew))
-  
   ;; Optional setup (e.g. C-xm for sending a message):
   (autoload 'mew-user-agent-compose "mew" nil t)
   (if (boundp 'mail-user-agent)
@@ -62,7 +60,7 @@
 ;;TODO 
 (defun auto-complete-clang-settings ()                       
   (progn                                                    
-    (add-to-list 'load-path "~/.emacs.d/libs")              
+    (add-to-list 'load-path "~/.emacs.d/libs")
     (require 'auto-complete-clang)                          
     (setq ac-clang-auto-save t)                             
     (setq ac-auto-start t)                                  
@@ -128,31 +126,25 @@
 (add-hook 'after-init-hook
           ;; If setting function does not work properly, Just put it at the end. 
           `(lambda ()
-             (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
+             
              (customize-dir-settings)
              (dolist (package starter-kit-packages)
                (starter-kit-install-if-needed package))
              (require 'yasnippet)
              (starter-kit-load "lisp")
-             (message "lambda3")
              (auto-complete-settings)
-             (message "lambda4")
-	     (switch-window-setting)
-             (global-setting)
-             (ac-nrepl-settings)
+
              (auto-complete-clang-settings)
              ;;(auto-complete-clang-async-settings)
              (require 'session)
              (session-initialize)
              (ac-flyspell-workaround)
-             (emms-settings)
-             (c-settings)
              (load "desktop")
              (desktop-load-default)
-             (org-mode-settings)
-             (org-latex-setting)
              (message "ALL INIT FINISHED")
-             (global-undo-tree-mode)))
+             (global-undo-tree-mode)
+	     (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))
+             (personal-setting)))
 
 (setq starter-kit-packages
       (list
@@ -214,13 +206,28 @@
        'yasnippet
        'yasnippet
        'zen-and-art-theme))
-(require qj-os)
-(system-var-settings)
-(global-misc-settings)
-(fonts-settings)
-(easypg-settings)
-(calendar-setting)
-(time-stamp-setting)
+
+(defun personal-setting ()
+  (progn
+    (add-to-list 'load-path "~/.emacs.d/personal/")
+    (require 'qj-os)
+    (require 'qj-misc)
+    (require 'qj-global-settings)
+    (require 'qj-clojure)
+    (require 'qj-emms)
+    (require 'qj-org)
+    (require 'qj-cxx)
+    (org-latex-setting)
+    (org-mode-settings)
+    (c-settings)
+    (emms-settings)
+    (ac-nrepl-settings)
+    (switch-window-setting)
+    (global-settings)
+    (system-var-settings)
+    (global-misc-settings)
+    (easypg-settings)
+    (calendar-setting)
+    (time-stamp-setting)))
 
 (provide 'qj-init)
-
