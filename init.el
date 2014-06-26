@@ -2,7 +2,9 @@
 ;;; This is your personal config variable
 (setq starter-kit-dir "~/.emacs.d/starter-kit/")
 (setq debug-on-error t)
-(setq yas-snippet-dirs (list "~/.emacs.d/snippets"))
+(setq yas-snippet-dirs (list "~/.emacs.d/snippets"
+                             "~/.emacs.d/elpa/yasnippet-20131231.758/snippets/"))
+
 (defun customize-dir-settings ()
   (progn
     (setq package-user-dir "~/.emacs.d/elpa")))
@@ -14,7 +16,7 @@
 (setq
   qj-chinese-fonts
   '( "文泉驿等宽微米黑" "SimSun" "Hei" "Microsoft Yahei"   "黑体" "新宋体" "宋体"))
-(setq qj-font-size  ":pixelsize=18")
+(setq qj-font-size  ":pixelsize=20")
 
 
 (defun auto-complete-settings ()
