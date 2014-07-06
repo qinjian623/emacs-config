@@ -1,0 +1,17 @@
+auto-save-list/
+semanticdb/*
+tramp
+srecode-map.el
+elpa/archives/
+.session
+./places
+backups/
+emms/cache
+.smex-items
+tmp/
+url/
+ac-comphist.dat
+elpa/archives/
+session.*
+*#
+.#*
