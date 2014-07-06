@@ -1,0 +1,20 @@
+
+;; ----- smex-history -----
+(
+ eval-buffer
+ helm-M-x
+ nyan-mode
+ golden-ratio-mode
+ golden-ratio
+ cd
+ 5x5
+)
+
+;; ----- smex-data -----
+(
+ (golden-ratio . 1)
+ (golden-ratio-mode . 1)
+ (nyan-mode . 1)
+ (helm-M-x . 1)
+ (eval-buffer . 1)
+)
