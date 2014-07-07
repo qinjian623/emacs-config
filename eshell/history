@@ -1,1 +1,15 @@
 ls
+ls
+cp dd.sh ~/Documents/git/plib/shell/
+mkdir ~/Documents/git/plib/shell/
+cp dd.sh ~/Documents/git/plib/shell/
+cd ~/Documents/git/plib/shell/
+git status
+cd  ..
+ls
+ls shell/
+git status
+git add .
+git status
+git commit -am "prefix: python and shell script"
+git push

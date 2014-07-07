@@ -83,7 +83,7 @@
 (global-set-key [C-tab] 'other-window)
 (global-set-key "\C-j" 'goto-line)
 (global-set-key "\C-z" 'undo-tree-undo)
-
+(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key "\C-x o" 'ace-window)
 ;;; Spell check
 ;;; TODO auto-correct short key
@@ -415,8 +415,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;  (xxx . t)
 ;;)
 ;;)
-
 (elpy-enable)
+(jedi:setup)
 ;;(add-hook 'python-mode-hook 'jedi:setup)
 ;;(setq jedi:complete-on-dot t)                 ; optional
 ;;(setq jedi:get-in-function-call-delay 500)
