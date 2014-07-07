@@ -415,6 +415,9 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;  (xxx . t)
 ;;)
 ;;)
+
+;;; The default check-command do NO pep8 check.
+(setq python-check-command "flake8")
 (elpy-enable)
 (jedi:setup)
 ;;(add-hook 'python-mode-hook 'jedi:setup)
