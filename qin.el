@@ -1,6 +1,7 @@
 ;;;
 ;;;
 ;;;
+
 (defun common-mode-hooks()
   (auto-fill-mode -1)
   (toggle-truncate-lines -1)
@@ -15,6 +16,15 @@
                          emacs-startup-hook
                          org-mode-hook))
 
+;;; Python
+
+;;; The default check-command do NO pep8 check.
+(setq python-check-command "flake8")
+(elpy-enable)
+;;(jedi:setup)
+(add-hook 'python-mode-hook 'jedi:setup)
+;;(setq jedi:complete-on-dot t)                 ; optional
+;;(setq jedi:get-in-function-call-delay 500)
 
 
 (setq package-archives
@@ -140,7 +150,7 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;;(global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h s") 'helm-semantic-or-imenu)
 (global-set-key (kbd "C-c h m") 'helm-man-woman)
 (global-set-key (kbd "C-c h f") 'helm-find)
@@ -231,10 +241,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (setq scroll-step 1
           scroll-margin 1
           scroll-conservatively 10000)
-    (setq display-time-day-and-date t)
-
-    (setq display-time-24hr-format t)
-    (display-time-mode t)))
+    (setq display-time-day-and-date t)))
 
 (defun all-buffer-chinese-words-count ()
   "全buffer的字数统计,使用count的包装"
@@ -242,6 +249,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (let ((beg (point-min))
         (end (point-max)))
     (count beg end)))
+
 (defun easypg-settings ()
   ;;; easypg，emacs 自带
   (require 'epa-file)
@@ -253,41 +261,41 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   ;; 允许自动保存
   (setq epa-file-inhibit-auto-save nil))
 
-(defun calendar-setting ()
-  (progn
-    ;;(setq calendar-latitude +39.9)
-    ;;(setq calendar-longitude +116.4)
-    ;;(setq calendar-location-name "Beijing")
-    (setq mark-holidays-in-calendar t)
-    ;;打开calendar自动打开节日和生日列表
-    (setq view-calendar-holidays-initially t)
-    (setq calendar-week-start-day 1)
-    (setq christian-holidays nil)
-    (setq hebrew-holidays nil)
-    (setq holiday-general-holidays
-          '((holiday-fixed 1 1 "New Year's Day")
-            (holiday-fixed 2 2 "Groundhog Day")
-            (holiday-fixed 2 14 "Valentine's Day")
-            (holiday-fixed 3 17 "St. Patrick's Day")
-            (holiday-fixed 4 1 "April Fools' Day")
-            (holiday-float 5 0 2 "Mother's Day")
-            (holiday-float 5 1 -1 "Memorial Day")
-            (holiday-float 6 0 3 "Father's Day")
-            (holiday-fixed 7 4 "Independence Day")
-            (holiday-float 9 1 1 "Labor Day")
-            (holiday-float 10 1 2 "Columbus Day")
-            (holiday-fixed 10 31 "Halloween")
-            (holiday-fixed 11 11 "Veteran's Day")
-            (holiday-float 11 4 4 "Thanksgiving")
-            (holiday-fixed 1 1 "元旦")
-            (holiday-fixed 3 8 "妇女节")
-            (holiday-fixed 4 1 "愚人节")
-            (holiday-fixed 4 11 "谁的生日")
-            (holiday-fixed 5 1 "劳动节")
-            (holiday-fixed 10 1 "国庆节")
-            (holiday-fixed 12 25 "圣诞节")
-            (holiday-float 5 0 2 "母亲节")
-            (holiday-float 6 0 3 "父亲节")))))
+;; (defun calendar-setting ()
+;;   (progn
+;;     ;;(setq calendar-latitude +39.9)
+;;     ;;(setq calendar-longitude +116.4)
+;;     ;;(setq calendar-location-name "Beijing")
+;;     (setq mark-holidays-in-calendar t)
+;;     ;;打开calendar自动打开节日和生日列表
+;;     (setq view-calendar-holidays-initially t)
+;;     (setq calendar-week-start-day 1)
+;;     (setq christian-holidays nil)
+;;     (setq hebrew-holidays nil)
+;;     (setq holiday-general-holidays
+;;           '((holiday-fixed 1 1 "New Year's Day")
+;;             (holiday-fixed 2 2 "Groundhog Day")
+;;             (holiday-fixed 2 14 "Valentine's Day")
+;;             (holiday-fixed 3 17 "St. Patrick's Day")
+;;             (holiday-fixed 4 1 "April Fools' Day")
+;;             (holiday-float 5 0 2 "Mother's Day")
+;;             (holiday-float 5 1 -1 "Memorial Day")
+;;             (holiday-float 6 0 3 "Father's Day")
+;;             (holiday-fixed 7 4 "Independence Day")
+;;             (holiday-float 9 1 1 "Labor Day")
+;;             (holiday-float 10 1 2 "Columbus Day")
+;;             (holiday-fixed 10 31 "Halloween")
+;;             (holiday-fixed 11 11 "Veteran's Day")
+;;             (holiday-float 11 4 4 "Thanksgiving")
+;;             (holiday-fixed 1 1 "元旦")
+;;             (holiday-fixed 3 8 "妇女节")
+;;             (holiday-fixed 4 1 "愚人节")
+;;             (holiday-fixed 4 11 "谁的生日")
+;;             (holiday-fixed 5 1 "劳动节")
+;;             (holiday-fixed 10 1 "国庆节")
+;;             (holiday-fixed 12 25 "圣诞节")
+;;             (holiday-float 5 0 2 "母亲节")
+;;             (holiday-float 6 0 3 "父亲节")))))
 
 (defun chinese-words-count (beg end)
   "用于统计字符数，包括中文（含中文标点）、英文字母、空格、段落和其他字符（数字等等）。
@@ -324,7 +332,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
     (global-ede-mode 1)
     (semantic-mode 1)
     (require 'semantic/bovine/gcc)
-    ;; Semantic
+    ;; semantic
     (global-semantic-idle-completions-mode t)
     (global-semantic-decoration-mode t)
     (global-semantic-highlight-func-mode t)
@@ -415,12 +423,3 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;;  (xxx . t)
 ;;)
 ;;)
-
-;;; The default check-command do NO pep8 check.
-(setq python-check-command "flake8")
-(elpy-enable)
-(jedi:setup)
-;;(add-hook 'python-mode-hook 'jedi:setup)
-;;(setq jedi:complete-on-dot t)                 ; optional
-;;(setq jedi:get-in-function-call-delay 500)
-
