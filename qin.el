@@ -2,6 +2,9 @@
 ;;;
 ;;;
 
+
+
+
 (defun common-mode-hooks()
   (auto-fill-mode -1)
   (toggle-truncate-lines -1)
@@ -34,12 +37,13 @@
         ("marmalade"   . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-
 ;;; Global mode
 (golden-ratio-mode)
 (yas-global-mode)
-(undo-tree-mode)
+(global-undo-tree-mode)
 
+;;; Trailing spaces
+(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
 ;; TODO Do we need this?
 (setq sentence-end-double-space nil)
 (setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
@@ -68,6 +72,8 @@
           '(lambda () (progn
                     (rainbow-delimiters-mode t)
                     (hl-line-mode -1))))
+(define-key emacs-lisp-mode-map (kbd "M-n") 'forward-sexp)
+(define-key emacs-lisp-mode-map (kbd "M-p") 'backward-sexp)
 
 ;;; UI settings.
 (load-theme 'deeper-blue)
@@ -80,11 +86,11 @@
       scroll-conservatively 10000)
 
 (defun toggle-fullscreen ()
-      "Toggle full screen"
-      (interactive)
-      (set-frame-parameter
-       nil 'fullscreen
-       (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+  "Toggle full screen"
+  (interactive)
+  (set-frame-parameter
+   nil 'fullscreen
+   (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
 
 ;;; Key binding settings
 ;;; Need to check what the sk have done for us.
