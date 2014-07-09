@@ -4,7 +4,7 @@ tramp
 srecode-map.el
 elpa/archives/
 .session
-./places
+places
 backups/
 emms/cache
 .smex-items
