@@ -4,7 +4,8 @@
 ;;; Code:
 
 
-(add-to-list 'load-path "~/.emacs.d/personal/")
+
+(require 'jec.elpa)
 (require 'jec.ac)
 (require 'jec.ui)
 (require 'jec.helm)

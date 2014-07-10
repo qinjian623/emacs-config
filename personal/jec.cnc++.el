@@ -29,12 +29,12 @@
   (setq tab-width 8)
   (setq indent-tabs-mode t)
   (setq c-basic-offset 8)
-  (add-to-list 'ac-sources 'ac-source-semantic)
-  (add-to-list 'ac-sources 'ac-source-clang)
-  (add-to-list 'ac-sources 'ac-source-yasnippet)
-  (add-to-list 'ac-sources 'ac-source-gtags)
-  (add-to-list 'ac-sources 'ac-source-filename)
-  (add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
+  ;; 必须重置表，否则多余的列表会影响结果，这些足够使用
+  (setq ac-sources '(ac-source-semantic
+                     ac-source-clang
+                     ac-source-yasnippet
+                     ac-source-gtags
+                     ac-source-filename))
   ;;; Already set by sk.
   ;;(local-set-key (kbd "RET") 'newline-and-indent)
   ;;(linum-mode t)

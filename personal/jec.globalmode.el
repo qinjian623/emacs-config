@@ -29,10 +29,18 @@
 (yas-global-mode)
 
 
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (auto-fill-mode -1)
+            (hl-line-mode -1)
+            (toggle-truncate-lines -1)))
+
 (add-hook 'prog-mode-hook
           (lambda () (interactive)
             (setq show-trailing-whitespace 1)
             (auto-fill-mode -1)
+            (hl-line-mode -1)
             (toggle-truncate-lines -1)
             (number-font-lock-mode)))
 
