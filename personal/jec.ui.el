@@ -18,5 +18,6 @@
       scroll-margin 1
       scroll-conservatively 10000)
 
-(provide 'jec.ui.el)
+
+(provide 'jec.ui)
 ;;; jec.ui.el ends here

@@ -64,5 +64,5 @@
 (add-hook 'helm-goto-line-before-hook 'helm-save-current-pos-to-mark-ring)
 (helm-mode 1)
 
-(provide 'jec.helm.el)
+(provide 'jec.helm)
 ;;; jec.helm.el ends here

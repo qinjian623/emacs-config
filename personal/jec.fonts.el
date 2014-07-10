@@ -56,7 +56,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
   (qiang-set-font
    qj-english-fonts qj-font-size qj-chinese-fonts))
 
-(fonts-settings)
+(if window-system
+    (fonts-settings))
 
-(provide 'jec.fonts.el)
+(provide 'jec.fonts)
 ;;; jec.fonts.el ends here

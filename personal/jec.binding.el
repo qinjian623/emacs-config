@@ -22,5 +22,5 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key "\C-x o" 'ace-window)
 
-(provide 'jec.binding.el)
+(provide 'jec.binding)
 ;;; jec.binding.el ends here

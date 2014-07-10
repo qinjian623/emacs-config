@@ -5,6 +5,8 @@
 ;;; Commentary:
 ;; 无
 ;;; Code:
+(require 'jec.ac)
+(require 'auto-complete-config)
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda () (progn
@@ -19,5 +21,5 @@
 (define-key emacs-lisp-mode-map (kbd "M-n") 'forward-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-p") 'backward-sexp)
 
-(provide 'jec.el.el)
+(provide 'jec.el)
 ;;; jec.el.el ends here

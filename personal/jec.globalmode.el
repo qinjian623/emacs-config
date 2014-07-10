@@ -28,6 +28,7 @@
 (golden-ratio-mode)
 (yas-global-mode)
 
+
 (add-hook 'prog-mode-hook
           (lambda () (interactive)
             (setq show-trailing-whitespace 1)
@@ -54,7 +55,8 @@
     (ispell-change-dictionary "american" t)
     (require 'flycheck-tip)
     (flycheck-tip-use-timer 'verbose)))
+
 (global-misc-settings)
 
-(provide 'jec.globalmode.el)
+(provide 'jec.globalmode)
 ;;; jec.globalmode.el ends here

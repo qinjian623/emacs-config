@@ -18,5 +18,5 @@
     (eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))))
 (ac-nrepl-settings)
 
-(provide 'jec.clojure.el)
+(provide 'jec.clojure)
 ;;; jec.clojure.el ends here
