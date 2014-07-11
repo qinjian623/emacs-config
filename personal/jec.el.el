@@ -12,6 +12,7 @@
           '(lambda () (progn
                     (rainbow-delimiters-mode t)
                     (ac-emacs-lisp-mode-setup)
+                    (paredit-mode 1)
                     ;; ac-emacs-lisp-mode-setup 中没有文件的补全
                     (add-to-list 'ac-sources 'ac-source-filename))))
 

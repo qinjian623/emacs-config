@@ -81,10 +81,6 @@
        's
        'smart-compile
        'smex
-       'starter-kit
-       'starter-kit-bindings
-       'starter-kit-eshell
-       'starter-kit-lisp
        'undo-tree
        'yasnippet))
 

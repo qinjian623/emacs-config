@@ -26,7 +26,7 @@
 ;; 多加入两个ac源，方便代码
 (add-hook 'python-mode-hook
           (lambda ()
-            (add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
+            ;;(add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
             (add-to-list 'ac-sources 'ac-source-yasnippet)))
 
 ;;(setq jedi:complete-on-dot t)                 ; optional

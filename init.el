@@ -1,9 +1,7 @@
-;;; qin.el --- Personal Configuration
+;;; init.el --- Personal Configuration
 ;;; Commentary:
 ;; Copyright (C) 2014 Jian QIN
 ;;; Code:
-
-
 
 (require 'jec.elpa)
 (require 'jec.ac)
@@ -18,7 +16,6 @@
 (require 'jec.el)
 (require 'jec.cnc++)
 
-
 ;;(load "jec.python")
 ;;(load "jec.cnc++")
 ;;(load "jec.globalmode")
@@ -31,6 +28,6 @@
 ;;(load "jec.org")
 ;;(load "jec.misc")
 
-(provide 'qin)
-;;; qin.el ends here
+(provide 'init)
+;;; init.el ends here
 
