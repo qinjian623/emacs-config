@@ -3,6 +3,8 @@
 ;; Copyright (C) 2014 Jian QIN
 ;;; Code:
 
+(add-to-list 'load-path "~/.emacs.d/personal/")
+
 (require 'jec.elpa)
 (require 'jec.ac)
 (require 'jec.ui)
@@ -16,17 +18,14 @@
 (require 'jec.el)
 (require 'jec.cnc++)
 
-;;(load "jec.python")
-;;(load "jec.cnc++")
-;;(load "jec.globalmode")
-;;(load "jec.el")
-;;(load "jec.binding")
-;;(load "jec.helm")
-;;(load "jec.fonts")
-;;(load "jec.clojure")
-;;(load "jec.ui")
-;;(load "jec.org")
-;;(load "jec.misc")
+(add-hook 'after-init-hook
+          `(lambda ()
+             (setq package-user-dir "~/.emacs.d/elpa/")
+             (starter-kit-load "starter-kit-lisp.org")
+             (starter-kit-load "starter-kit-python.org")
+             (starter-kit-load "starter-kit-yasnippet.org")))
+
+(load "/home/qin/.emacs.d/sk/init.el")
 
 (provide 'init)
 ;;; init.el ends here

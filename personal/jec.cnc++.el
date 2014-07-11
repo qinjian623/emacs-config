@@ -47,6 +47,7 @@
 (add-hook 'c++-mode-hook
           'c/c++-setting)
 
+;;; TODO 基本无作用的内容
 ;; (defun my-cedet-hook ()
 ;;   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
 ;;   (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
