@@ -25,7 +25,7 @@
              (starter-kit-load "starter-kit-python.org")
              (starter-kit-load "starter-kit-yasnippet.org")))
 
-(load "/home/qin/.emacs.d/sk/init.el")
+(load "~/.emacs.d/sk/init.el")
 
 (provide 'init)
 ;;; init.el ends here
