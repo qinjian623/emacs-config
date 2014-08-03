@@ -1,10 +1,10 @@
 auto-save-list/
+eshell/
 var/
 .python-environments
 semanticdb/*
 tramp
 srecode-map.el
-elpa/archives/
 .session
 places
 backups/
@@ -13,7 +13,6 @@ emms/cache
 tmp/
 url/
 ac-comphist.dat
-elpa/archives/
 session.*
 *#
 .#*
