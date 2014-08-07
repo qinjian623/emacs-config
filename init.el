@@ -4,6 +4,7 @@
 ;;; Code:
 
 (add-to-list 'load-path "~/.emacs.d/personal/")
+(setq httpd-port 8018)
 
 (require 'jec.elpa)
 (require 'jec.ac)
@@ -21,6 +22,7 @@
 (add-hook 'after-init-hook
           `(lambda ()
              (setq package-user-dir "~/.emacs.d/elpa/")
+             (package-initialize)
              (starter-kit-load "starter-kit-lisp.org")
              (starter-kit-load "starter-kit-python.org")
              (starter-kit-load "starter-kit-yasnippet.org")))
