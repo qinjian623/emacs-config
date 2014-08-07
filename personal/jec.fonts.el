@@ -11,7 +11,7 @@
   '("Courier New" "Courier 10 Pitch" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" ))
 (defvar
   qj-chinese-fonts
-  '("Wawati SC" "文泉驿等宽微米黑" "Microsoft Yahei" "SimSun" "Hei" "黑体" "新宋体" "宋体"))
+  '("Lantinghei SC" "文泉驿等宽微米黑" "Microsoft Yahei" "SimSun" "Hei" "黑体" "新宋体" "宋体" "Wawati SC"))
 (defvar qj-font-size  ":pixelsize=18")
 
 

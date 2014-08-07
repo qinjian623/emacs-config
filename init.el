@@ -28,7 +28,6 @@
              (starter-kit-load "starter-kit-yasnippet.org")))
 
 (load "~/.emacs.d/sk/init.el")
-
 (setq ac-clang-flags
       (mapcar (lambda (item)(concat "-I" item))
               (split-string
