@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (git-rebase-mode) "git-rebase-mode" "git-rebase-mode.el"
-;;;;;;  (21431 43792 0 0))
+;;;;;;  (21530 19524 156183 450000))
 ;;; Generated autoloads from git-rebase-mode.el
 
 (autoload 'git-rebase-mode "git-rebase-mode" "\
@@ -21,8 +21,8 @@ running 'man git-rebase' at the command line) for details.
 
 ;;;***
 
-;;;### (autoloads nil nil ("git-rebase-mode-pkg.el") (21431 43792
-;;;;;;  836123 0))
+;;;### (autoloads nil nil ("git-rebase-mode-pkg.el") (21530 19524
+;;;;;;  257636 580000))
 
 ;;;***
 

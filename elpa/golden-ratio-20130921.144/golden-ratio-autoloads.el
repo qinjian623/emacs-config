@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (golden-ratio-mode golden-ratio) "golden-ratio"
-;;;;;;  "golden-ratio.el" (21431 43852 0 0))
+;;;;;;  "golden-ratio.el" (21530 19697 588189 0))
 ;;; Generated autoloads from golden-ratio.el
 
 (autoload 'golden-ratio "golden-ratio" "\
@@ -28,8 +28,8 @@ Enable automatic window resizing with golden ratio.
 
 ;;;***
 
-;;;### (autoloads nil nil ("golden-ratio-pkg.el") (21431 43852 59180
-;;;;;;  0))
+;;;### (autoloads nil nil ("golden-ratio-pkg.el") (21530 19697 704493
+;;;;;;  671000))
 
 ;;;***
 

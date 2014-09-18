@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (helm-package) "helm-package" "helm-package.el"
-;;;;;;  (21433 3197 494429 745000))
+;;;;;;  (21530 20293 936208 83000))
 ;;; Generated autoloads from helm-package.el
 
 (autoload 'helm-package "helm-package" "\
@@ -14,8 +14,8 @@
 
 ;;;***
 
-;;;### (autoloads nil nil ("helm-package-pkg.el") (21433 3197 577693
-;;;;;;  619000))
+;;;### (autoloads nil nil ("helm-package-pkg.el") (21530 20294 37537
+;;;;;;  656000))
 
 ;;;***
 

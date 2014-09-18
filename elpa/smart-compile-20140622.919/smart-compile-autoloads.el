@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (smart-compile) "smart-compile" "smart-compile.el"
-;;;;;;  (21431 43822 0 0))
+;;;;;;  (21530 25159 572363 784000))
 ;;; Generated autoloads from smart-compile.el
 
 (autoload 'smart-compile "smart-compile" "\
@@ -16,8 +16,8 @@ which is defined in `smart-compile-alist'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("smart-compile-pkg.el") (21431 43822 983722
-;;;;;;  0))
+;;;### (autoloads nil nil ("smart-compile-pkg.el") (21530 25159 659362
+;;;;;;  778000))
 
 ;;;***
 
