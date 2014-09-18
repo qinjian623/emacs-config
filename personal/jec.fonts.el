@@ -8,7 +8,7 @@
 
 (defvar
   qj-english-fonts
-  '("Courier New" "Courier 10 Pitch" "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" ))
+  '("Courier 10 Pitch" "Courier New"  "Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" ))
 (defvar
   qj-chinese-fonts
   '("Lantinghei SC" "文泉驿等宽微米黑" "Microsoft Yahei" "SimSun" "Hei" "黑体" "新宋体" "宋体" "Wawati SC"))

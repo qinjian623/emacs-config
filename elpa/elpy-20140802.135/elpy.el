@@ -516,9 +516,7 @@ a customize buffer, but has some more options."
         (custom-search-field nil))
     (with-current-buffer buf
       (elpy-insert--header "Elpy Configuration")
-
       (elpy-config--insert-configuration-problems config)
-
       (elpy-insert--header "Options")
 
       (let ((custom-buffer-style 'tree))

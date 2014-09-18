@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (js2r-add-keybindings-with-modifier js2r-add-keybindings-with-prefix)
-;;;;;;  "js2-refactor" "js2-refactor.el" (21467 2327 871671 255000))
+;;;;;;  "js2-refactor" "js2-refactor.el" (21476 14861 674946 779000))
 ;;; Generated autoloads from js2-refactor.el
 
 (autoload 'js2r-add-keybindings-with-prefix "js2-refactor" "\
@@ -19,8 +19,8 @@
 
 ;;;***
 
-;;;### (autoloads (js2r-extract-var) "js2r-vars" "js2r-vars.el" (21467
-;;;;;;  2327 807671 253000))
+;;;### (autoloads (js2r-extract-var) "js2r-vars" "js2r-vars.el" (21476
+;;;;;;  14861 642946 778000))
 ;;; Generated autoloads from js2r-vars.el
 
 (autoload 'js2r-extract-var "js2r-vars" "\
@@ -33,7 +33,7 @@
 ;;;### (autoloads nil nil ("js2-refactor-pkg.el" "js2r-conditionals.el"
 ;;;;;;  "js2r-conveniences.el" "js2r-formatting.el" "js2r-functions.el"
 ;;;;;;  "js2r-helpers.el" "js2r-iife.el" "js2r-paredit.el" "js2r-wrapping.el")
-;;;;;;  (21467 2328 136393 709000))
+;;;;;;  (21476 14861 899469 845000))
 
 ;;;***
 

@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/.emacs.d/personal/")
 (setq httpd-port 8018)
 
+(setq package-load-list '((elpy "1.4.2") all))
 (require 'jec.elpa)
 (require 'jec.ac)
 (require 'jec.ui)
@@ -15,6 +16,7 @@
 (require 'jec.globalmode)
 (require 'jec.binding)
 
+(require 'jec.org)
 (require 'jec.python)
 (require 'jec.el)
 (require 'jec.cnc++)

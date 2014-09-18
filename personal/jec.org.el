@@ -13,6 +13,39 @@
 ;;     (setq org-beamer-outline-frame-options "")
 ;;     (setq org-log-done 'time)))
 
+(setq org-publish-project-alist
+      '(("blog-linux"
+         :base-directory "/home/qin/Documents/git/qinjian623.github.com/_orgs"
+         :base-extension "org"
+         :publishing-directory "/home/qin/Documents/git/qinjian623.github.com/_posts"
+         :publishing-function org-html-publish-to-html
+         :recursive t
+         :htmlized-source t
+         :html-extension "html"
+         :with-author nil
+         :with-toc nil
+         :section-number nil
+         :author-info nil
+         :body-only t
+         :table-of-contents nil)
+        ("blog-mac"
+         :base-directory "/Users/qin/Documents/git/qinjian623.github.com/_orgs"
+         :base-extension "org"
+         :publishing-directory "/Users/qin/Documents/git/qinjian623.github.com/_posts"
+         :publishing-function org-html-publish-to-html
+         :recursive t
+         :htmlized-source t
+         :html-extension "html"
+         :with-author nil
+         :with-toc nil
+         :section-number nil
+         :author-info nil
+         :body-only t
+         :table-of-contents nil)))
+
+(setq org-agenda-files (list "~/Dropbox/TODO"))
+(setq org-agenda-dir "~/Dropbox/TODO")
+
 (defun org-latex-setting()
   (require 'org-latex)
   (require 'ox-latex)
