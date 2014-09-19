@@ -39,12 +39,12 @@
         )
     (progn
       (message "Using auto-complete-clang")
+      (require 'auto-complete-clang)
       (setq ac-sources '(ac-source-semantic
                          ac-source-clang
                          ac-source-yasnippet
                          ac-source-gtags
-                         ac-source-filename))
-      (require 'auto-complete-clang)))
+                         ac-source-filename))))
   (c-set-style "K&R")
   (setq tab-width 8)
   (setq indent-tabs-mode t)
