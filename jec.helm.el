@@ -42,6 +42,7 @@
  helm-buffers-fuzzy-matching t          ; fuzzy matching buffer names when non--nil
                                         ; useful in helm-mini that lists buffers
  )
+
 (define-key helm-map (kbd "C-x 2") 'helm-select-2nd-action)
 (define-key helm-map (kbd "C-x 3") 'helm-select-3rd-action)
 (define-key helm-map (kbd "C-x 4") 'helm-select-4rd-action)

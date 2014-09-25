@@ -30,18 +30,14 @@
         (require 'auto-complete-clang-async)
         (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
         (ac-clang-launch-completion-process)
-        (setq ac-sources '(ac-source-semantic
-                           ac-source-clang-async
+        (setq ac-sources '(ac-source-clang-async
                            ac-source-yasnippet
                            ac-source-gtags
-                           ac-source-filename))
-
-        )
+                           ac-source-filename)))
     (progn
       (message "Using auto-complete-clang")
       (require 'auto-complete-clang)
-      (setq ac-sources '(ac-source-semantic
-                         ac-source-clang
+      (setq ac-sources '(ac-source-clang
                          ac-source-yasnippet
                          ac-source-gtags
                          ac-source-filename))))
@@ -53,9 +49,11 @@
   ;;; Already set by sk.
   ;;(local-set-key (kbd "RET") 'newline-and-indent)
   ;;(linum-mode t)
-  (semantic-mode t)
-  (c-toggle-auto-state)
-  )
+  ;; 如果在ac中加入semantic的源，会有随机不工作的问题，且cpu占用过高，
+  ;; 而且提示完全不如ac-clang
+  (semantic-mode -1)
+  (c-toggle-hungry-state 1)
+  (c-toggle-auto-state 1))
 
 (add-hook 'c-mode-hook
           'c/c++-setting)
