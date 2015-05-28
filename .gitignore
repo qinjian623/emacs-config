@@ -1,5 +1,7 @@
 auto-save-list/
 eshell/
+*.elc
+*~
 var/
 .python-environments
 semanticdb/*
