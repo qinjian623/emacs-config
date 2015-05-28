@@ -1,0 +1,6 @@
+[submodule "starter-kit"]
+	path = starter-kit
+	url = https://github.com/eschulte/emacs24-starter-kit.git
+[submodule "sk"]
+	path = sk
+	url = https://github.com/eschulte/emacs24-starter-kit.git
