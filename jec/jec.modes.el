@@ -46,6 +46,12 @@
 (define-key emacs-lisp-mode-map (kbd "M-n") 'forward-sexp)
 (define-key emacs-lisp-mode-map (kbd "M-p") 'backward-sexp)
 
+
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
 (add-hook 'org-mode-hook
           (lambda ()
             (auto-fill-mode -1)
