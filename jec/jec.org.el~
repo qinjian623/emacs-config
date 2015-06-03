@@ -47,7 +47,7 @@
 (setq org-agenda-dir "~/Dropbox/TODO")
 
 (defun org-latex-setting()
-  ;;(require 'org-latex)
+  (require 'org-latex)
   (require 'ox-latex)
   (add-to-list 'org-latex-packages-alist '("" "minted"))
   (setq org-latex-listings 'minted)

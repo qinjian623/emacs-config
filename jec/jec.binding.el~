@@ -1,11 +1,3 @@
-;;; jec.ac.el --- 自定义的键绑定
-
-;; Copyright (C) 2014 Jian QIN
-;;
-;;; Commentary:
-;; 无
-;;; Code:
-
 (defun toggle-fullscreen ()
   "Toggle full screen"
   (interactive)
@@ -16,11 +8,5 @@
 ;; TODO Need to check what the sk have done for us.
 (global-set-key (kbd "<f11>") 'toggle-fullscreen)
 (global-set-key (kbd "<f9>") 'smart-compile)
-(global-set-key [C-tab] 'other-window)
-(global-set-key "\C-j" 'goto-line)
 (global-set-key "\C-z" 'undo-tree-undo)
 (global-set-key (kbd "RET") 'newline-and-indent)
-;;(global-set-key "\C-x o" 'ace-window)
-
-(provide 'jec.binding)
-;;; jec.binding.el ends here
