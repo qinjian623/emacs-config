@@ -1,9 +1,0 @@
-;;; emms history -*- mode: emacs-lisp; coding: utf-8; -*-
-(
-;; active playlist
-" *EMMS Playlist*"
-;; playlists: ((BUFFER_NAME SELECT_POSITION TRACKS) ...)
-((" *EMMS Playlist*" 1 ((*track* (type . file) (name . "/home/qin/Music/忽然之间.mp3") (metadata) (info-mtime 20889 58896) (last-played 21433 6802 467977 840000) (play-count . 1)))))
-;; play method
-((emms-repeat-track) (emms-repeat-playlist))
-)
