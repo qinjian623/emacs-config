@@ -91,19 +91,21 @@
 (use-package anzu :config (global-anzu-mode))
 (use-package ranger :config (ranger-override-dired-mode t))
 (use-package org-download)
-(use-package org-present :config (progn
-				   (add-hook 'org-present-mode-hook
-					     (lambda ()
-					       (org-present-big)
-					       (org-display-inline-images)
-					       (org-present-hide-cursor)
-					       (org-present-read-only)))
-				   (add-hook 'org-present-mode-quit-hook
-					     (lambda ()
-					       (org-present-small)
-					       (org-remove-inline-images)
-					       (org-present-show-cursor)
-					       (org-present-read-write)))))
+(use-package org-present
+  :config (progn
+	    (add-hook 'org-present-mode-hook
+		      (lambda ()
+			(org-present-big)
+			(org-display-inline-images)
+			(org-present-hide-cursor)
+			(org-present-read-only)))
+	    (add-hook 'org-present-mode-quit-hook
+		      (lambda ()
+			(org-present-small)
+			(org-remove-inline-images)
+			(org-present-show-cursor)
+			(org-present-read-write)))))
+
 (global-set-key (kbd "C-z") 'undo-tree-undo)
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "C-c C-a") 'org-agenda)
@@ -143,11 +145,11 @@
 (global-set-key (kbd "C-a") 'back-to-indentation)
 
 
-(when (member "DejaVu Sans Mono" (font-family-list))
-  (set-face-attribute 'default nil :font "DejaVu Sans Mono"))
+;; (when (member "DejaVu Sans Mono" (font-family-list))
+;;   (set-face-attribute 'default nil :font "DejaVu Sans Mono 14"))
 
-;; (when (member "Courier" (font-family-list))
-;;   (set-face-attribute 'default nil :font "Courier"))
+(when (member "Courier" (font-family-list))
+  (set-face-attribute 'default nil :font "Courier 14"))
 
 ;; specify font for all unicode characters
 (when (member "Symbola" (font-family-list))
@@ -282,3 +284,16 @@
         (forward-char 1))
       (message "共有%d个字，%d个字母，%d个空格，%d个其他字符，%d个段落" cn en spc others par))))
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
