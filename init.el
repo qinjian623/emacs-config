@@ -5,11 +5,8 @@
 
 ;;; Code:
 (require 'package)
-
-(setq package-archives
-      '(("gnu"         . "http://elpa.gnu.org/packages/")
-        ("org"         . "http://orgmode.org/elpa/")
-        ("melpa" . "https://melpa.org/packages/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa") t)
 (package-initialize)
 
 
@@ -17,35 +14,66 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(use-package company
-  :diminish 'company-mode
+(use-package company :ensure t
   :config (progn
 	    (global-set-key (kbd "M-/") 'company-complete)
 	    (setq company-idle-delay 0.1)
 	    (setq company-tooltip-flip-when-above t)
 	    (setq company-minimum-prefix-length 2)
-	    (add-hook 'after-init-hook 'global-company-mode)))
+	    (add-hook 'after-init-hook 'global-company-mode))
+  
+  :diminish (company-mode . " ⓒ"))
 
-(use-package cyberpunk-theme :config (load-theme 'cyberpunk))
 
-(use-package nyan-mode :if window-system :config (nyan-mode))
+(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk :no-confirm))
 
-(use-package toc-org :config (defun *-org-insert-toc ()
-			       "Create table of contents (TOC) if current buffer is in `org-mode'."
-			       (when (= major-mode 'org-mode)
-				 toc-org-insert-toc)))
+(use-package nyan-mode :ensure t :if window-system
+  :config (progn
+            (setq nyan-wavy-trail nil)
+            (setq nyan-animate-nyancat t)
+            (nyan-mode)))
+
+(use-package toc-org :ensure t
+  :config (defun *-org-insert-toc ()
+	    "Create table of contents (TOC) if current buffer is in `org-mode'."
+	    (when (= major-mode 'org-mode)
+	      toc-org-insert-toc)))
+
 
 ;; (use-package nnreddit :config ; (custom-set-variables '(gnus-select-method (quote (nnreddit "")))))
 ;;   (add-to-list 'gnus-secondary-select-methods
 ;;                '(nnreddit "")))
 
-(use-package yasnippet
+(use-package uniquify                   ; Make buffer names unique
+  :config (setq uniquify-buffer-name-style
+                ;; 'forward
+                'post-forward-angle-brackets
+                ))
+
+(use-package writeroom-mode             ; Distraction-free editing
+  :ensure t
+  :bind (("C-c t r" . writeroom-mode)))
+
+(use-package yasnippet :ensure t
   :config (progn
 	    (yas-global-mode)
-	    (global-set-key (kbd "C-c C-c") 'yas-insert-snippet)))
+	    (global-set-key (kbd "C-c C-c") 'yas-insert-snippet))
+  :diminish (yas-minor-mode . "Ⓨ"))
 
+(use-package smart-mode-line :ensure t
+  :config (progn
+            (sml/setup)
+            (sml/apply-theme 'dark)
+            (setq sml/no-confirm-load-theme t)
+            (setq sml/shorten-directory t)
+            (setq sml/shorten-modes t)))
+
+(use-package smart-mode-line-powerline-theme :ensure t
+  :config (progn
+            (sml/apply-theme 'powerline)))
 
 (use-package helm
+  :ensure t
   :config (progn
 	    (setq helm-split-window-in-side-p           t
 		  helm-buffers-fuzzy-matching           t
@@ -71,27 +99,58 @@
 		      #'(lambda ()
 			  (define-key eshell-mode-map (kbd "M-l")  'helm-eshell-history)))
 	    (add-hook 'helm-goto-line-before-hook 'helm-save-current-pos-to-mark-ring)
-	    (helm-mode 1)))
+	    (helm-mode 1)
+            )
+  :diminish helm-mode)
 
-(use-package undo-tree :config (global-undo-tree-mode))
-(use-package ace-window)
+(use-package undo-tree
+  :ensure t
+  :config (global-undo-tree-mode)
+  :diminish undo-tree-mode)
+
+(use-package diminish :ensure t
+  :init (diminish '(eldoc-mode subword-mode beacon-mode)))
+
+(diminish 'eldoc-mode)
+(diminish 'subword-mode)
+
+(use-package ace-window :ensure t)
+(use-package projectile :ensure t :config (projectile-global-mode) :diminish projectile-mode)
+
 (use-package flycheck :ensure t :config
   (progn
-    (global-flycheck-mode)))
+    (global-flycheck-mode))
+  :diminish flycheck-mode)
 
-(use-package dired-git :config   (add-hook 'dired-mode-hook 'dired-git-mode))
-(use-package dired-icon :config   (add-hook 'dired-mode-hook 'dired-icon-mode))
+(use-package dired-git
+  :ensure t
+  :config   (add-hook 'dired-mode-hook 'dired-git-mode))
+
+(use-package dired-icon
+  :ensure t
+  :config   (add-hook 'dired-mode-hook 'dired-icon-mode))
 
 (use-package flycheck-pos-tip :ensure t :config
   (with-eval-after-load 'flycheck
     (flycheck-pos-tip-mode)))
-(use-package rainbow-delimiters :config (rainbow-delimiters-mode))
-(use-package org-bullets :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-(use-package beacon :config (beacon-mode 1))
-(use-package anzu :config (global-anzu-mode))
-(use-package ranger :config (ranger-override-dired-mode t))
-(use-package org-download)
-(use-package org-present
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config (rainbow-delimiters-mode)
+  :diminish rainbow-delimiters-mode)
+
+(use-package org-bullets :ensure t
+  :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(use-package beacon :ensure t :config (beacon-mode 1) :diminish beacon-mode)
+
+(use-package anzu :ensure t
+  :config (global-anzu-mode)
+  :diminish anzu-mode)
+
+(use-package ranger :ensure t :config (ranger-override-dired-mode t))
+(use-package org-download :ensure t)
+(use-package org-present :ensure t
   :config (progn
 	    (add-hook 'org-present-mode-hook
 		      (lambda ()
@@ -117,19 +176,24 @@
 
 (global-set-key (kbd "C-x k") 'custom/kill-this-buffer)
 
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode)
+
+(when (window-system)
+  (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
+(setq display-time-24hr-format t)
+
+(display-time-mode +1)
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 (show-paren-mode t)
+
 (global-auto-revert-mode t)
-(recentf-mode 1)
-(savehist-mode 1)
+(recentf-mode t)
+(savehist-mode t)
 (global-hl-line-mode 1)
 (global-linum-mode t)
+(setq show-trailing-whitespace 't)
 (setq avy-background t)
 (setq avy-style 'at-full)
 (setq avy-style 'at-full)
@@ -137,35 +201,45 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
+(setq-default indicate-buffer-boundaries 'left)
+(setq-default indicate-empty-lines +1)
+
 (global-set-key "\C-j" 'goto-line)
+
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-j") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "C-a") 'back-to-indentation)
 
+(display-battery-mode 1)
+(global-subword-mode 1)
 
 ;; (when (member "DejaVu Sans Mono" (font-family-list))
 ;;   (set-face-attribute 'default nil :font "DejaVu Sans Mono 14"))
 
 (when (member "Courier" (font-family-list))
-  (set-face-attribute 'default nil :font "Courier 14"))
-
+  (set-face-attribute 'default nil :font "Courier 16"))
+(when (member "Courier New" (font-family-list))
+  (set-face-attribute 'default nil :font "Courier New 16"))
 ;; specify font for all unicode characters
 (when (member "Symbola" (font-family-list))
   (set-fontset-font t 'unicode "Symbola" nil 'prepend))
-
 ;; specify font for chinese characters using default chinese font on linux
 (when (member "WenQuanYi Micro Hei" (font-family-list))
   (set-fontset-font t '(#x4e00 . #x9fff) "WenQuanYi Micro Hei" ))
+(when (member "STSong" (font-family-list))
+  (set-fontset-font t '(#x4e00 . #x9fff) "STSong 16"))
 
 (flyspell-mode)
 (flyspell-prog-mode)
 (ispell-change-dictionary "english")
 (fset 'yes-or-no-p 'y-or-n-p)
 
+
+
 (setq frame-title-format
-      '("" invocation-name " - " (:eval (if (buffer-file-name)
+      '("" invocation-name " ◉ " (:eval (if (buffer-file-name)
                                             (abbreviate-file-name (buffer-file-name))
                                           "%b"))))
 (setq inhibit-startup-screen t)
@@ -187,6 +261,12 @@
   ;; 	  ("linenos" "true")))
   ;;   (setq org-export-latex-hyperref-format "\\ref{%s}")
   ;; (setq org-latex-preview-ltxpng-directory "~/")
+  (setq org-agenda-files '("~/Dropbox/TODO/"))
+  (setq org-export-latex-hyperref-format "\\ref{%s}")
+  (setq org-latex-preview-ltxpng-directory "~/")
+  (setenv "PATH"
+          (concat
+           "/Library/TeX/texbin/xelatex" ":" (getenv "PATH")))
   (setq org-agenda-custom-commands
         '(("c" "Simple agenda view"
            ((tags "PRIORITY=\"A\""
@@ -194,6 +274,7 @@
                    (org-agenda-overriding-header "High-priority unfinished tasks:")))
             (agenda "")
             (alltodo "")))))
+  
   (setq org-latex-pdf-process
         (list "xelatex  -shell-escape -output-directory %o %f"
               ;;"bibtex %b"
@@ -216,7 +297,6 @@
   名不含連音「ー」）。
 - 英文只計算「單字數」，不含標點。
 - 韓文不包含在內。
-
 ※計算標準太多種了，例如英文標點是否算入、以及可能有不太常用的標點符號沒算入等
 。且中日文標點的計算標準要看 Emacs 如何定義特殊標點符號如ヴァランタン・アルカン
 中間的點也被 Emacs 算為一個字而不是標點符號。"
@@ -297,3 +377,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
