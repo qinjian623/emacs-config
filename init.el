@@ -35,13 +35,15 @@
 			       (when (= major-mode 'org-mode)
 				 toc-org-insert-toc)))
 
-(use-package nnreddit :config ; (custom-set-variables '(gnus-select-method (quote (nnreddit "")))))
-  (add-to-list 'gnus-secondary-select-methods
-               '(nnreddit "")))
+;; (use-package nnreddit :config ; (custom-set-variables '(gnus-select-method (quote (nnreddit "")))))
+;;   (add-to-list 'gnus-secondary-select-methods
+;;                '(nnreddit "")))
 
-(use-package yasnippet :config (progn
-				 (yas-global-mode)
-				 (global-set-key (kbd "C-c C-c") 'yas-insert-snippet)))
+(use-package yasnippet
+  :config (progn
+	    (yas-global-mode)
+	    (global-set-key (kbd "C-c C-c") 'yas-insert-snippet)))
+
 
 (use-package helm
   :config (progn
@@ -50,9 +52,6 @@
 		  helm-move-to-line-cycle-in-source     t
 		  helm-ff-search-library-in-sexp        t
 		  helm-ff-file-name-history-use-recentf  t)
-	    (define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
-	    (define-key helm-grep-mode-map (kbd "n")  'helm-grep-mode-jump-other-window-forward)
-	    (define-key helm-grep-mode-map (kbd "p")  'helm-grep-mode-jump-other-window-backward)
 	    (global-set-key (kbd "M-x") 'helm-M-x)
 					; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 	    (global-set-key (kbd "M-y") 'helm-show-kill-ring)
@@ -85,7 +84,7 @@
 
 (use-package flycheck-pos-tip :ensure t :config
   (with-eval-after-load 'flycheck
-  (flycheck-pos-tip-mode)))
+    (flycheck-pos-tip-mode)))
 (use-package rainbow-delimiters :config (rainbow-delimiters-mode))
 (use-package org-bullets :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 (use-package beacon :config (beacon-mode 1))
@@ -282,6 +281,4 @@
               (t (setq others (1+ others))))
         (forward-char 1))
       (message "共有%d个字，%d个字母，%d个空格，%d个其他字符，%d个段落" cn en spc others par))))
-
-
 
