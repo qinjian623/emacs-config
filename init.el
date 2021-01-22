@@ -92,7 +92,19 @@
 (use-package anzu :config (global-anzu-mode))
 (use-package ranger :config (ranger-override-dired-mode t))
 (use-package org-download)
-
+(use-package org-present :config (progn
+				   (add-hook 'org-present-mode-hook
+					     (lambda ()
+					       (org-present-big)
+					       (org-display-inline-images)
+					       (org-present-hide-cursor)
+					       (org-present-read-only)))
+				   (add-hook 'org-present-mode-quit-hook
+					     (lambda ()
+					       (org-present-small)
+					       (org-remove-inline-images)
+					       (org-present-show-cursor)
+					       (org-present-read-write)))))
 (global-set-key (kbd "C-z") 'undo-tree-undo)
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "C-c C-a") 'org-agenda)
