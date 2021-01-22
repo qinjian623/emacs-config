@@ -1,3 +1,4 @@
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
@@ -102,7 +103,7 @@
     ;; invert the navigation direction if the the completion popup-isearch-match
     ;; is displayed on top (happens near the bottom of windows)
     (setq company-tooltip-flip-when-above t)
-                                        ; (yas-global-mode 1)
+    ;; (yas-global-mode 1)
     (global-flycheck-mode 1)
     ;;(eval-after-load 'flycheck
     ;;  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
@@ -135,9 +136,7 @@
 (defun my-helm-settings()
   (progn
     (require 'helm-config)
-    
-    
-    
+        
     ;;(require 'helm-projectile)
     ;; (helm-fuzzy-mode -1)
     ;; See https://github.com/bbatsov/prelude/pull/670 for a detailed
