@@ -25,20 +25,23 @@
   :diminish (company-mode . " ⓒ"))
 
 
-(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk :no-confirm))
+;; (use-package cyberpunk-theme
+;;   :ensure t :config (load-theme 'cyberpunk :no-confirm))
 
-(use-package nyan-mode :ensure t :if window-system
-  :config (progn
-            (setq nyan-wavy-trail nil)
-            (setq nyan-animate-nyancat t)
-            (nyan-mode)))
+(use-package monokai-theme
+  :ensure t :config (load-theme 'monokai :no-confirm))
+
+;; (use-package nyan-mode :ensure t :if window-system
+;;   :config (progn
+;;             (setq nyan-wavy-trail nil)
+;;             (setq nyan-animate-nyancat t)
+;;             (nyan-mode -1)))
 
 (use-package toc-org :ensure t
   :config (defun *-org-insert-toc ()
 	    "Create table of contents (TOC) if current buffer is in `org-mode'."
 	    (when (= major-mode 'org-mode)
 	      toc-org-insert-toc)))
-
 
 ;; (use-package nnreddit :config ; (custom-set-variables '(gnus-select-method (quote (nnreddit "")))))
 ;;   (add-to-list 'gnus-secondary-select-methods
@@ -59,6 +62,8 @@
 	    (yas-global-mode)
 	    (global-set-key (kbd "C-c C-c") 'yas-insert-snippet))
   :diminish (yas-minor-mode . "Ⓨ"))
+
+(use-package yasnippet-snippets :ensure t)
 
 (use-package smart-mode-line :ensure t
   :config (progn
@@ -212,7 +217,8 @@
 (global-set-key (kbd "C-j") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "C-a") 'back-to-indentation)
 
-(display-battery-mode 1)
+;; (display-battery-mode 1)
+
 (global-subword-mode 1)
 
 ;; (when (member "DejaVu Sans Mono" (font-family-list))
@@ -267,6 +273,19 @@
   (setenv "PATH"
           (concat
            "/Library/TeX/texbin/xelatex" ":" (getenv "PATH")))
+  (setq org-publish-project-alist
+      '(
+        ;; ... add all the components here (see below)...
+        ("org-notes"
+         :base-directory "/media/jian/39d7a37d-6f19-4d42-8af3-9dc9a3242e0e/gits/docs"
+         :base-extension "org"
+         :publishing-directory "~/public_html/"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :headline-levels 2  ; Just the default for this project.
+         :auto-preamble t
+         )))
+
   (setq org-agenda-custom-commands
         '(("c" "Simple agenda view"
            ((tags "PRIORITY=\"A\""
